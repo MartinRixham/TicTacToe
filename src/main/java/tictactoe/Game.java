@@ -1,103 +1,34 @@
 package tictactoe;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
-
-/**
- * Tic-Tac-Toe: TWo-player console version.
- */
 public final class Game
 {
-	// The game board and the game status
-	private static String[] board = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
-	private static int currentState;  // the current state of the game
-	private static String currentPlayer; // the current player
-
-	private static Scanner input = new Scanner(System.in); // the input Scanner
-
-	public Game()
-	{
-		currentState = 0; // "playing" or ready to play
-		currentPlayer = "X";  // cross plays first
-	}
+	private String[] board = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+	private Player human = new Human();
+	private Player computer = new Computer();
 
 	public static void main(String[] args)
 	{
-		// Initialize the game-board and current status
 		Game game = new Game();
-		System.out.println(game.printBoard());
-		do
-		{
-			game.getHumanSpot();
-			if (!game.gameIsOver() && !game.tie())
-			{
-				game.evalBoard();
-			}
-		}
-		while (!game.gameIsOver() && !game.tie()); // repeat if not game-over
-		System.out.print("Game over\n");
+		game.play();
 	}
 
-	public static String nextPlayer()
+	public void play()
 	{
-		if (currentPlayer == "X")
-		{
-			return "O";
-		}
-		else
-		{
-			return "X";
-		}
-	}
-
-	/**
-	 * Update global variables "board" and "currentPlayer".
-	 */
-	public void getHumanSpot()
-	{
-		boolean validInput = false;  // for input validation
-		System.out.print("Enter [0-8]:\n");
-		do
-		{
-			int spot = input.nextInt();
-			if (board[spot] != "X" && board[spot] != "O")
-			{
-				board[spot] = "X";  // update game-board content
-				System.out.println(printBoard());
-				validInput = true;  // input okay, exit loop
-			}
-			currentPlayer = nextPlayer();  // cross plays first
-		}
-		while (!validInput);  // repeat until input is valid
-	}
-
-	public void evalBoard()
-	{
-		boolean foundSpot = false;
-		do
-		{
-			if (board[4] == "4")
-			{
-				board[4] = "O";
-				foundSpot = true;
-			}
-			else
-			{
-				int spot = getBestMove();
-				if (board[spot] != "X" && board[spot] != "O")
-				{
-					foundSpot = true;
-					board[spot] = "O";
-				}
-				else
-				{
-					foundSpot = false;
-				}
-			}
-		}
-		while (!foundSpot);
 		System.out.println(printBoard());
+		do
+		{
+			int spot = human.getNextMove(board);
+			board[spot] = "X";
+			System.out.println(printBoard());
+			if (!gameIsOver() && !tie())
+			{
+				spot = computer.getNextMove(board);
+				board[spot] = "O";
+				System.out.println(printBoard());
+			}
+		}
+		while (!gameIsOver() && !tie()); // repeat if not game-over
+		System.out.print("Game over\n");
 	}
 
 	/**
@@ -113,54 +44,6 @@ public final class Game
 			board[2] == board[5] && board[5] == board[8] ||
 			board[0] == board[4] && board[4] == board[8] ||
 			board[2] == board[4] && board[4] == board[6];
-	}
-
-	public int getBestMove()
-	{
-		ArrayList<String> availableSpaces = new ArrayList<String>();
-		boolean foundBestMove = false;
-		int spot = 100;
-		for (String s : board)
-		{
-			if (s != "X" && s != "O")
-			{
-				availableSpaces.add(s);
-			}
-		}
-		for (String as : availableSpaces)
-		{
-			spot = Integer.parseInt(as);
-			board[spot] = "O";
-			if (gameIsOver())
-			{
-				foundBestMove = true;
-				board[spot] = as;
-				return spot;
-			}
-			else
-			{
-				board[spot] = "X";
-				if (gameIsOver())
-				{
-					foundBestMove = true;
-					board[spot] = as;
-					return spot;
-				}
-				else
-				{
-					board[spot] = as;
-				}
-			}
-		}
-		if (foundBestMove)
-		{
-			return spot;
-		}
-		else
-		{
-			int n = ThreadLocalRandom.current().nextInt(0, availableSpaces.size());
-			return Integer.parseInt(availableSpaces.get(n));
-		}
 	}
 
 	/**
