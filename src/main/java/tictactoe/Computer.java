@@ -1,7 +1,6 @@
 package tictactoe;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Computer implements Player
 {
@@ -16,14 +15,14 @@ public class Computer implements Player
 	{
 		while (true)
 		{
-			if (board.get(4) == "4")
+			if (board.isAvailable(4))
 			{
 				return 4;
 			}
 			else
 			{
 				int spot = getBestMove();
-				if (board.get(spot) != "X" && board.get(spot) != "O")
+				if (board.isAvailable(spot))
 				{
 					return spot;
 				}
@@ -33,15 +32,13 @@ public class Computer implements Player
 
 	private int getBestMove()
 	{
-		List<String> availableSpaces = board.getAvailableSpaces();
+		List<Integer> availableSpaces = board.getAvailableSpaces();
 
-		for (String number : availableSpaces)
+		for (int spot : availableSpaces)
 		{
-			int spot = Integer.parseInt(number);
-
 			if (winsAt(spot, "O"))
 			{
-				return spot;
+					return spot;
 			}
 
 			if (winsAt(spot, "X"))
@@ -50,8 +47,15 @@ public class Computer implements Player
 			}
 		}
 
-		int n = ThreadLocalRandom.current().nextInt(0, availableSpaces.size());
-		return Integer.parseInt(availableSpaces.get(n));
+		for (int spot: availableSpaces)
+		{
+			if (spot % 2 == 0)
+			{
+				return spot;
+			}
+		}
+
+		return availableSpaces.get(0);
 	}
 
 	private boolean winsAt(int spot, String symbol)

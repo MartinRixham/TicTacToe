@@ -44,4 +44,18 @@ public class ComputerTest
 
 		assertEquals(8, selectedSquare);
 	}
+
+	@Test
+	public void selectCornerIfPossible()
+	{
+		Board board = new Board();
+		board.set(0, "O");
+		board.set(4, "X");
+
+		Player computer = new Computer(board);
+
+		int selectedSquare = computer.getNextMove();
+
+		assertEquals(0, selectedSquare % 2);
+	}
 }

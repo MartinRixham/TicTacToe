@@ -26,7 +26,7 @@ public class Human implements Player
 		while (true)
 		{
 			int spot = input.nextInt();
-			if (board.get(spot) != "X" && board.get(spot) != "O")
+			if (board.isAvailable(spot))
 			{
 				return spot;
 			}
