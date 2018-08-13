@@ -24,7 +24,7 @@ public class Computer implements Player
 		}
 	}
 
-	public int getBestMove(Board board)
+	private int getBestMove(Board board)
 	{
 		List<String> availableSpaces = board.getAvailableSpaces();
 		boolean foundBestMove = false;
