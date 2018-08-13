@@ -10,14 +10,17 @@ public class Human implements Player
 
 	private PrintStream out;
 
-	public Human(InputStream in, PrintStream out)
+	private Board board;
+
+	public Human(InputStream in, PrintStream out, Board board)
 	{
 		this.input = new Scanner(in);
 		this.out = out;
+		this.board = board;
 	}
 
 	@Override
-	public int getNextMove(Board board)
+	public int getNextMove()
 	{
 		out.print("Enter [0-8]:\n");
 		while (true)

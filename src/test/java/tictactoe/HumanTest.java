@@ -18,9 +18,9 @@ public class HumanTest
 		PrintStream out = new PrintStream(stream);
 		InputStream in = new ByteArrayInputStream("3".getBytes());
 		Board board = new Board();
-		Player human = new Human(in, out);
+		Player human = new Human(in, out, board);
 
-		assertEquals(3, human.getNextMove(board));
+		assertEquals(3, human.getNextMove());
 	}
 
 	@Test
@@ -34,8 +34,8 @@ public class HumanTest
 		board.set(0, "X");
 		board.set(1, "O");
 
-		Player human = new Human(in, out);
+		Player human = new Human(in, out, board);
 
-		assertEquals(4, human.getNextMove(board));
+		assertEquals(4, human.getNextMove());
 	}
 }

@@ -5,7 +5,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Computer implements Player
 {
-	public int getNextMove(Board board)
+	private Board board;
+
+	public Computer(Board board)
+	{
+		this.board = board;
+	}
+
+	public int getNextMove()
 	{
 		while (true)
 		{
@@ -15,7 +22,7 @@ public class Computer implements Player
 			}
 			else
 			{
-				int spot = getBestMove(board);
+				int spot = getBestMove();
 				if (board.get(spot) != "X" && board.get(spot) != "O")
 				{
 					return spot;
@@ -24,44 +31,37 @@ public class Computer implements Player
 		}
 	}
 
-	private int getBestMove(Board board)
+	private int getBestMove()
 	{
 		List<String> availableSpaces = board.getAvailableSpaces();
-		boolean foundBestMove = false;
-		int spot = 100;
-		for (String as : availableSpaces)
+
+		for (String number : availableSpaces)
 		{
-			spot = Integer.parseInt(as);
-			board.set(spot, "O");
-			if (board.gameIsOver())
+			int spot = Integer.parseInt(number);
+
+			if (winsAt(spot, "O"))
 			{
-				foundBestMove = true;
-				board.set(spot, as);
 				return spot;
 			}
-			else
+
+			if (winsAt(spot, "X"))
 			{
-				board.set(spot, "X");
-				if (board.gameIsOver())
-				{
-					foundBestMove = true;
-					board.set(spot, as);
-					return spot;
-				}
-				else
-				{
-					board.set(spot, as);
-				}
+				return spot;
 			}
 		}
-		if (foundBestMove)
-		{
-			return spot;
-		}
-		else
-		{
-			int n = ThreadLocalRandom.current().nextInt(0, availableSpaces.size());
-			return Integer.parseInt(availableSpaces.get(n));
-		}
+
+		int n = ThreadLocalRandom.current().nextInt(0, availableSpaces.size());
+		return Integer.parseInt(availableSpaces.get(n));
+	}
+
+	private boolean winsAt(int spot, String symbol)
+	{
+		boolean wins;
+
+		board.set(spot, symbol);
+		wins = board.gameIsOver();
+		board.set(spot, Integer.toString(spot));
+
+		return wins;
 	}
 }

@@ -3,8 +3,8 @@ package tictactoe;
 public final class Game
 {
 	private Board board = new Board();
-	private Player human = new Human(System.in, System.out);
-	private Player computer = new Computer();
+	private Player human = new Human(System.in, System.out, board);
+	private Player computer = new Computer(board);
 
 	public static void main(String[] args)
 	{
@@ -17,12 +17,12 @@ public final class Game
 		System.out.println(board);
 		do
 		{
-			int spot = human.getNextMove(board);
+			int spot = human.getNextMove();
 			board.set(spot, "X");
 			System.out.println(board);
 			if (!board.gameIsOver() && !board.isTied())
 			{
-				spot = computer.getNextMove(board);
+				spot = computer.getNextMove();
 				board.set(spot, "O");
 				System.out.println(board);
 			}
