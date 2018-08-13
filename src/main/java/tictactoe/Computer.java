@@ -13,40 +13,30 @@ public class Computer implements Player
 
 	public int getNextMove()
 	{
-		while (true)
+		// First go in the middle.
+		if (board.isAvailable(4))
 		{
-			if (board.isAvailable(4))
-			{
-				return 4;
-			}
-			else
-			{
-				int spot = getBestMove();
-				if (board.isAvailable(spot))
-				{
-					return spot;
-				}
-			}
+			return 4;
 		}
-	}
 
-	private int getBestMove()
-	{
 		List<Integer> availableSpaces = board.getAvailableSpaces();
 
 		for (int spot : availableSpaces)
 		{
+			// Try to find a winning move.
 			if (winsAt(spot, "O"))
 			{
-					return spot;
+				return spot;
 			}
 
+			// Prevent an opponents winning move.
 			if (winsAt(spot, "X"))
 			{
 				return spot;
 			}
 		}
 
+		// Choose a corner if possible.
 		for (int spot: availableSpaces)
 		{
 			if (spot % 2 == 0)
