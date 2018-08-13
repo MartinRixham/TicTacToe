@@ -21,6 +21,25 @@ public class HumanTest
 		Player human = new Human(in, out, board);
 
 		assertEquals(3, human.getNextMove());
+		assertEquals(
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n",
+			stream.toString());
+	}
+
+	@Test
+	public void handleUnknownInput()
+	{
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		InputStream in = new ByteArrayInputStream("wibble\n2\n".getBytes());
+		Board board = new Board();
+		Player human = new Human(in, out, board);
+
+		assertEquals(2, human.getNextMove());
+		assertEquals(
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n" +
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n",
+			stream.toString());
 	}
 
 	@Test
@@ -37,5 +56,9 @@ public class HumanTest
 		Player human = new Human(in, out, board);
 
 		assertEquals(4, human.getNextMove());
+		assertEquals(
+			"Pick one of the available spots 2, 3, 4, 5, 6, 7, 8:\n" +
+			"Pick one of the available spots 2, 3, 4, 5, 6, 7, 8:\n",
+			stream.toString());
 	}
 }

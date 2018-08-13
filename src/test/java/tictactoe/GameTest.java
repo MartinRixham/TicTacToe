@@ -33,7 +33,7 @@ public class GameTest
 			"===+===+===\n" +
 			" 6 | 7 | 8\n" +
 			"\n" +
-			"Enter [0-8]:\n" +
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n" +
 			" 0 | X | 2\n" +
 			"===+===+===\n" +
 			" 3 | 4 | 5\n" +
@@ -46,7 +46,7 @@ public class GameTest
 			"===+===+===\n" +
 			" 6 | 7 | 8\n" +
 			"\n" +
-			"Enter [0-8]:\n" +
+			"Pick one of the available spots 0, 2, 3, 5, 6, 7, 8:\n" +
 			" 0 | X | X\n" +
 			"===+===+===\n" +
 			" 3 | O | 5\n" +
@@ -59,7 +59,7 @@ public class GameTest
 			"===+===+===\n" +
 			" 6 | 7 | 8\n" +
 			"\n" +
-			"Enter [0-8]:\n" +
+			"Pick one of the available spots 3, 5, 6, 7, 8:\n" +
 			" O | X | X\n" +
 			"===+===+===\n" +
 			" X | O | 5\n" +

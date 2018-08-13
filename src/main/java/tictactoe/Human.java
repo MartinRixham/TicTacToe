@@ -22,14 +22,31 @@ public class Human implements Player
 	@Override
 	public int getNextMove()
 	{
-		out.print("Enter [0-8]:\n");
 		while (true)
 		{
-			int spot = input.nextInt();
-			if (board.isAvailable(spot))
+			prompt();
+
+			if (input.hasNextInt())
 			{
-				return spot;
+				int spot = input.nextInt();
+				if (board.isAvailable(spot))
+				{
+					return spot;
+				}
+			}
+			else
+			{
+				input.nextLine();
 			}
 		}
+	}
+
+	private void prompt()
+	{
+		String availableSpots = board.getAvailableSpaces().toString();
+
+		out.print("Pick one of the available spots ");
+		out.print(availableSpots.substring(1, availableSpots.length() - 1));
+		out.println(":");
 	}
 }
