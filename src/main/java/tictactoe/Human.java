@@ -17,13 +17,13 @@ public class Human implements Player
 	}
 
 	@Override
-	public int getNextMove(String[] board)
+	public int getNextMove(Board board)
 	{
 		out.print("Enter [0-8]:\n");
 		while (true)
 		{
 			int spot = input.nextInt();
-			if (board[spot] != "X" && board[spot] != "O")
+			if (board.get(spot) != "X" && board.get(spot) != "O")
 			{
 				return spot;
 			}

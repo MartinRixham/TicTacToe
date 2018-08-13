@@ -1,22 +1,22 @@
 package tictactoe;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Computer implements Player
 {
-	public int getNextMove(String[] board)
+	public int getNextMove(Board board)
 	{
 		while (true)
 		{
-			if (board[4] == "4")
+			if (board.get(4) == "4")
 			{
 				return 4;
 			}
 			else
 			{
 				int spot = getBestMove(board);
-				if (board[spot] != "X" && board[spot] != "O")
+				if (board.get(spot) != "X" && board.get(spot) != "O")
 				{
 					return spot;
 				}
@@ -24,55 +24,33 @@ public class Computer implements Player
 		}
 	}
 
-	/**
-	 * Return true if the game was just won
-	 */
-	public boolean gameIsOver(String[] board)
+	public int getBestMove(Board board)
 	{
-		return board[0] == board[1] && board[1] == board[2] ||
-			board[3] == board[4] && board[4] == board[5] ||
-			board[6] == board[7] && board[7] == board[8] ||
-			board[0] == board[3] && board[3] == board[6] ||
-			board[1] == board[4] && board[4] == board[7] ||
-			board[2] == board[5] && board[5] == board[8] ||
-			board[0] == board[4] && board[4] == board[8] ||
-			board[2] == board[4] && board[4] == board[6];
-	}
-
-	public int getBestMove(String[] board)
-	{
-		ArrayList<String> availableSpaces = new ArrayList<String>();
+		List<String> availableSpaces = board.getAvailableSpaces();
 		boolean foundBestMove = false;
 		int spot = 100;
-		for (String s : board)
-		{
-			if (s != "X" && s != "O")
-			{
-				availableSpaces.add(s);
-			}
-		}
 		for (String as : availableSpaces)
 		{
 			spot = Integer.parseInt(as);
-			board[spot] = "O";
-			if (gameIsOver(board))
+			board.set(spot, "O");
+			if (board.gameIsOver())
 			{
 				foundBestMove = true;
-				board[spot] = as;
+				board.set(spot, as);
 				return spot;
 			}
 			else
 			{
-				board[spot] = "X";
-				if (gameIsOver(board))
+				board.set(spot, "X");
+				if (board.gameIsOver())
 				{
 					foundBestMove = true;
-					board[spot] = as;
+					board.set(spot, as);
 					return spot;
 				}
 				else
 				{
-					board[spot] = as;
+					board.set(spot, as);
 				}
 			}
 		}

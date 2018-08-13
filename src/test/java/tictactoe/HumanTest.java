@@ -17,7 +17,7 @@ public class HumanTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		InputStream in = new ByteArrayInputStream("3".getBytes());
-		String[] board = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+		Board board = new Board();
 		Player human = new Human(in, out);
 
 		assertEquals(3, human.getNextMove(board));
@@ -29,7 +29,11 @@ public class HumanTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		InputStream in = new ByteArrayInputStream("0\n4".getBytes());
-		String[] board = {"X", "O", "2", "3", "4", "5", "6", "7", "8"};
+
+		Board board = new Board();
+		board.set(0, "X");
+		board.set(1, "O");
+
 		Player human = new Human(in, out);
 
 		assertEquals(4, human.getNextMove(board));
