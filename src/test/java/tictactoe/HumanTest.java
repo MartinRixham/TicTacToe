@@ -16,7 +16,7 @@ public class HumanTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Scanner in = new Scanner(new ByteArrayInputStream("3".getBytes()));
+		Scanner in = new Scanner(new ByteArrayInputStream("3\n".getBytes()));
 		Board board = new Board();
 		Player human = new Human(in, out, "X");
 
@@ -47,7 +47,7 @@ public class HumanTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Scanner in = new Scanner(new ByteArrayInputStream("0\n4".getBytes()));
+		Scanner in = new Scanner(new ByteArrayInputStream("0\n4\n".getBytes()));
 
 		Board board = new Board();
 		board.set(0, "X");

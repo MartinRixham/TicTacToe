@@ -28,6 +28,8 @@ public class Human implements Player
 			if (in.hasNextInt())
 			{
 				int spot = in.nextInt();
+				in.nextLine();
+
 				if (board.isAvailable(spot))
 				{
 					return spot;
