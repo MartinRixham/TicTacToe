@@ -35,7 +35,7 @@ public class Human implements Player
 			}
 			else
 			{
-				in.next();
+				in.nextLine();
 			}
 		}
 	}

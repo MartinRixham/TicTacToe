@@ -12,26 +12,20 @@ public class ManualPlayerSelection implements PlayerSelection
 	public ManualPlayerSelection(Scanner in, PrintStream out)
 	{
 		out.println("Player 1");
-		out.println("1) human");
-		out.println("2) computer");
-		out.println("select player:");
 
-		int firstPlayerType = in.nextInt();
+		int firstPlayerType = this.getPlayerType(in, out);
 
 		out.println("select symbol:");
 
-		String firstPlayerSymbol = in.next();
+		String firstPlayerSymbol = in.nextLine();
 
 		out.println("Player 2");
-		out.println("1) human");
-		out.println("2) computer");
-		out.println("select player:");
 
-		int secondPlayerType = in.nextInt();
+		int secondPlayerType = this.getPlayerType(in, out);
 
 		out.println("select symbol:");
 
-		String secondPlayerSymbol = in.next();
+		String secondPlayerSymbol = in.nextLine();
 
 		if (firstPlayerType == 1)
 		{
@@ -49,6 +43,31 @@ public class ManualPlayerSelection implements PlayerSelection
 		else
 		{
 			secondPlayer = new Computer(secondPlayerSymbol, firstPlayerSymbol);
+		}
+	}
+
+	private int getPlayerType(Scanner in, PrintStream out)
+	{
+		while (true)
+		{
+			out.println("1) human");
+			out.println("2) computer");
+			out.println("select player:");
+
+			if (in.hasNextInt())
+			{
+				int playerType = in.nextInt();
+				in.nextLine();
+
+				if (playerType == 1 || playerType == 2)
+				{
+					return playerType;
+				}
+			}
+			else
+			{
+				in.nextLine();
+			}
 		}
 	}
 

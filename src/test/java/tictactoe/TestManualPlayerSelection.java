@@ -51,4 +51,26 @@ public class TestManualPlayerSelection
 		assertTrue(secondPlayer instanceof Human);
 		assertEquals("#", secondPlayer.getSymbol());
 	}
+
+	@Test
+	public void attemptToSelectInvalidPlayerType()
+	{
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		Scanner in =
+			new Scanner(new ByteArrayInputStream("3\n1\nX\nwibble\n2\nO\n".getBytes()));
+
+		new ManualPlayerSelection(in, out);
+
+		assertEquals(
+			"Player 1\n" +
+				"1) human\n2) computer\nselect player:\n" +
+				"1) human\n2) computer\nselect player:\n" +
+				"select symbol:\n" +
+				"Player 2\n" +
+				"1) human\n2) computer\nselect player:\n" +
+				"1) human\n2) computer\nselect player:\n" +
+				"select symbol:\n",
+			stream.toString());
+	}
 }
