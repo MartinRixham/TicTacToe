@@ -73,4 +73,24 @@ public class TestManualPlayerSelection
 				"select symbol:\n",
 			stream.toString());
 	}
+
+	@Test
+	public void attemptToSelectInvalidSymbol()
+	{
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		Scanner in =
+			new Scanner(new ByteArrayInputStream("1\nXX\nX\n2\n\nO\n".getBytes()));
+
+		new ManualPlayerSelection(in, out);
+
+		assertEquals(
+			"Player 1\n1) human\n2) computer\nselect player:\n" +
+				"select symbol:\n" +
+				"select symbol:\n" +
+				"Player 2\n1) human\n2) computer\nselect player:\n" +
+				"select symbol:\n" +
+				"select symbol:\n",
+			stream.toString());
+	}
 }
