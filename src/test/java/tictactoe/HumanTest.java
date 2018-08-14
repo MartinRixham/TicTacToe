@@ -17,7 +17,7 @@ public class HumanTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		Scanner in = new Scanner(new ByteArrayInputStream("3\n".getBytes()));
-		Board board = new Board();
+		Board board = new ASCIIBoard();
 		Player human = new Human(in, out, "X");
 
 		assertEquals(3, human.getNextMove(board));
@@ -32,7 +32,7 @@ public class HumanTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		Scanner in = new Scanner(new ByteArrayInputStream("wibble\n2\n".getBytes()));
-		Board board = new Board();
+		Board board = new ASCIIBoard();
 		Player human = new Human(in, out, "X");
 
 		assertEquals(2, human.getNextMove(board));
@@ -49,7 +49,7 @@ public class HumanTest
 		PrintStream out = new PrintStream(stream);
 		Scanner in = new Scanner(new ByteArrayInputStream("0\n4\n".getBytes()));
 
-		Board board = new Board();
+		Board board = new ASCIIBoard();
 		board.set(0, "X");
 		board.set(1, "O");
 

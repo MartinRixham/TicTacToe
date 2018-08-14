@@ -50,7 +50,7 @@ public class Human implements Player
 
 	private void prompt(Board board)
 	{
-		String availableSpots = board.getAvailableSpaces().toString();
+		String availableSpots = board.getAvailableSpots().toString();
 
 		out.print("Pick one of the available spots ");
 		out.print(availableSpots.substring(1, availableSpots.length() - 1));

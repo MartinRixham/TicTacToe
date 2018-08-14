@@ -22,7 +22,7 @@ public class Computer implements Player
 			return 4;
 		}
 
-		List<Integer> availableSpaces = board.getAvailableSpaces();
+		List<Integer> availableSpaces = board.getAvailableSpots();
 
 		for (int spot : availableSpaces)
 		{

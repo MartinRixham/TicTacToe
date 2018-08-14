@@ -7,7 +7,7 @@ public final class Game
 {
 	private PrintStream out;
 
-	private Board board = new Board();
+	private Board board;
 
 	private Player firstPlayer;
 
@@ -17,14 +17,16 @@ public final class Game
 	{
 		Scanner in = new Scanner(System.in);
 		PrintStream out = System.out;
+		Board board = new ASCIIBoard();
 		PlayerSelection playerSelection = new ManualPlayerSelection(in, out);
-		Game game = new Game(out, playerSelection);
+		Game game = new Game(out, board, playerSelection);
 		game.play();
 	}
 
-	public Game(PrintStream out, PlayerSelection playerSelection)
+	public Game(PrintStream out, Board board, PlayerSelection playerSelection)
 	{
 		this.out = out;
+		this.board = board;
 		this.firstPlayer = playerSelection.getFirstPlayer();
 		this.secondPlayer = playerSelection.getSecondPlayer();
 	}
