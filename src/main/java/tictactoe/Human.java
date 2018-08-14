@@ -1,20 +1,19 @@
 package tictactoe;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Human implements Player
 {
-	private Scanner input;
+	private Scanner in;
 
 	private PrintStream out;
 
 	private Board board;
 
-	public Human(InputStream in, PrintStream out, Board board)
+	public Human(Scanner in, PrintStream out, Board board)
 	{
-		this.input = new Scanner(in);
+		this.in = in;
 		this.out = out;
 		this.board = board;
 	}
@@ -26,9 +25,9 @@ public class Human implements Player
 		{
 			prompt();
 
-			if (input.hasNextInt())
+			if (in.hasNextInt())
 			{
-				int spot = input.nextInt();
+				int spot = in.nextInt();
 				if (board.isAvailable(spot))
 				{
 					return spot;
@@ -36,7 +35,7 @@ public class Human implements Player
 			}
 			else
 			{
-				input.nextLine();
+				in.nextLine();
 			}
 		}
 	}

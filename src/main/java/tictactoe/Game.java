@@ -1,58 +1,71 @@
 package tictactoe;
 
+import java.io.PrintStream;
+import java.util.Scanner;
+
 public final class Game
 {
+	private PrintStream out;
+
 	private Board board = new Board();
 
-	private Player human = new Human(System.in, System.out, board);
+	private Player human;
 
 	private Player computer = new Computer(board);
 
 	public static void main(String[] args)
 	{
-		Game game = new Game();
+		Scanner in = new Scanner(System.in);
+		PrintStream out = System.out;
+		Game game = new Game(in, out);
 		game.play();
+	}
+
+	public Game(Scanner in, PrintStream out)
+	{
+		this.out = out;
+		this.human = new Human(in, out, board);
 	}
 
 	public void play()
 	{
-		System.out.println(board);
+		out.println(board);
 
 		while (true)
 		{
 			int spot = human.getNextMove();
 			board.set(spot, "X");
 
-			System.out.println("Player 1 picks spot: " + spot);
-			System.out.println(board);
+			out.println("Player 1 picks spot: " + spot);
+			out.println(board);
 
 			if (board.gameIsOver())
 			{
-				System.out.println("Player 1 wins!");
+				out.println("Player 1 wins!");
 				return;
 			}
 
 			if (board.isTied())
 			{
-				System.out.println("It's a tie!");
+				out.println("It's a tie!");
 				return;
 			}
 
 			spot = computer.getNextMove();
 			board.set(spot, "O");
 
-			System.out.println("Player 2 picks spot: " + spot);
-			System.out.println(board);
+			out.println("Player 2 picks spot: " + spot);
+			out.println(board);
 
 			if (board.gameIsOver())
 			{
-				System.out.println("Player 2 wins!");
+				out.println("Player 2 wins!");
 				return;
 			}
 
 			if (board.isTied())
 			{
-				System.out.println("It's a tie!");
+				out.println("It's a tie!");
 				return;
 			}
 		}

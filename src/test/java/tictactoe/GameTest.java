@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,17 +14,11 @@ public class GameTest
 	@Test
 	public void losingGame()
 	{
-		PrintStream originalOut = System.out;
-		InputStream originalIn = System.in;
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
 
-		ByteArrayOutputStream spyOut = new ByteArrayOutputStream();
-		PrintStream out = new PrintStream(spyOut);
-		System.setOut(out);
-
-		InputStream in = new ByteArrayInputStream("1\n2\n3\n".getBytes());
-		System.setIn(in);
-
-		Game.main(null);
+		new Game(in, out).play();
 
 		String expectedOutput =
 			" 0 | 1 | 2\n" +
@@ -80,9 +74,6 @@ public class GameTest
 			"\n" +
 			"Player 2 wins!\n";
 
-		assertEquals(expectedOutput, spyOut.toString());
-
-		System.setOut(originalOut);
-		System.setIn(originalIn);
+		assertEquals(expectedOutput, stream	.toString());
 	}
 }

@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class HumanTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		InputStream in = new ByteArrayInputStream("3".getBytes());
+		Scanner in = new Scanner(new ByteArrayInputStream("3".getBytes()));
 		Board board = new Board();
 		Player human = new Human(in, out, board);
 
@@ -31,7 +31,7 @@ public class HumanTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		InputStream in = new ByteArrayInputStream("wibble\n2\n".getBytes());
+		Scanner in = new Scanner(new ByteArrayInputStream("wibble\n2\n".getBytes()));
 		Board board = new Board();
 		Player human = new Human(in, out, board);
 
@@ -47,7 +47,7 @@ public class HumanTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		InputStream in = new ByteArrayInputStream("0\n4".getBytes());
+		Scanner in = new Scanner(new ByteArrayInputStream("0\n4".getBytes()));
 
 		Board board = new Board();
 		board.set(0, "X");
