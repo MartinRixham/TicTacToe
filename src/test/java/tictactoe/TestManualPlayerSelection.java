@@ -93,4 +93,24 @@ public class TestManualPlayerSelection
 				"select symbol:\n",
 			stream.toString());
 	}
+
+	@Test
+	public void forbidPlayersWithSameSymbol()
+	{
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		Scanner in =
+			new Scanner(new ByteArrayInputStream("1\nX\n2\nX\nO\n".getBytes()));
+
+		new ManualPlayerSelection(in, out);
+
+		assertEquals(
+			"Player 1\n1) human\n2) computer\nselect player:\n" +
+				"select symbol:\n" +
+				"Player 2\n1) human\n2) computer\nselect player:\n" +
+				"select symbol:\n" +
+				"Players cannot have the same symbol.\n" +
+				"select symbol:\n",
+			stream.toString());
+	}
 }

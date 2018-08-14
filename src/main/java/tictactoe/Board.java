@@ -7,9 +7,6 @@ public class Board
 {
 	private String[] board = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
 
-	/**
-	 * Return true if the game was just won
-	 */
 	public boolean gameIsOver()
 	{
 		return board[0].equals(board[1]) && board[1].equals(board[2]) ||
@@ -22,10 +19,6 @@ public class Board
 			board[2].equals(board[4]) && board[4].equals(board[6]);
 	}
 
-	/**
-	 * Return true if it is a draw (no more empty cell)
-	 */
-	// TODO: maybe there is an easeir way to check this
 	public boolean isTied()
 	{
 		for (int i = 0; i < board.length; i++)

@@ -19,7 +19,7 @@ public class ManualPlayerSelection implements PlayerSelection
 		out.println("Player 2");
 
 		int secondPlayerType = getPlayerType(in, out);
-		String secondPlayerSymbol = getSymbol(in, out);
+		String secondPlayerSymbol = getUniqueSecondSymbol(in, out, firstPlayerSymbol);
 
 		if (firstPlayerType == 1)
 		{
@@ -61,6 +61,23 @@ public class ManualPlayerSelection implements PlayerSelection
 			else
 			{
 				in.nextLine();
+			}
+		}
+	}
+
+	private String getUniqueSecondSymbol(Scanner in, PrintStream out, String firstSymbol)
+	{
+		while (true)
+		{
+			String secondPlayerSymbol = getSymbol(in, out);
+
+			if (secondPlayerSymbol.equals(firstSymbol))
+			{
+				out.println("Players cannot have the same symbol.");
+			}
+			else
+			{
+				return secondPlayerSymbol;
 			}
 		}
 	}
