@@ -9,21 +9,21 @@ public class Human implements Player
 
 	private PrintStream out;
 
-	private Board board;
+	private String symbol;
 
-	public Human(Scanner in, PrintStream out, Board board)
+	public Human(Scanner in, PrintStream out, String symbol)
 	{
 		this.in = in;
 		this.out = out;
-		this.board = board;
+		this.symbol = symbol;
 	}
 
 	@Override
-	public int getNextMove()
+	public int getNextMove(Board board)
 	{
 		while (true)
 		{
-			prompt();
+			prompt(board);
 
 			if (in.hasNextInt())
 			{
@@ -35,12 +35,18 @@ public class Human implements Player
 			}
 			else
 			{
-				in.nextLine();
+				in.next();
 			}
 		}
 	}
 
-	private void prompt()
+	@Override
+	public String getSymbol()
+	{
+		return symbol;
+	}
+
+	private void prompt(Board board)
 	{
 		String availableSpots = board.getAvailableSpaces().toString();
 

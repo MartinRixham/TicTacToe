@@ -2,5 +2,7 @@ package tictactoe;
 
 public interface Player
 {
-	int getNextMove();
+	int getNextMove(Board board);
+
+	String getSymbol();
 }

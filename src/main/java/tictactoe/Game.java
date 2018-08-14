@@ -9,22 +9,24 @@ public final class Game
 
 	private Board board = new Board();
 
-	private Player human;
+	private Player firstPlayer;
 
-	private Player computer = new Computer(board);
+	private Player secondPlayer;
 
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
 		PrintStream out = System.out;
-		Game game = new Game(in, out);
+		PlayerSelection playerSelection = new ManualPlayerSelection(in, out);
+		Game game = new Game(out, playerSelection);
 		game.play();
 	}
 
-	public Game(Scanner in, PrintStream out)
+	public Game(PrintStream out, PlayerSelection playerSelection)
 	{
 		this.out = out;
-		this.human = new Human(in, out, board);
+		this.firstPlayer = playerSelection.getFirstPlayer();
+		this.secondPlayer = playerSelection.getSecondPlayer();
 	}
 
 	public void play()
@@ -33,8 +35,8 @@ public final class Game
 
 		while (true)
 		{
-			int spot = human.getNextMove();
-			board.set(spot, "X");
+			int spot = firstPlayer.getNextMove(board);
+			board.set(spot, firstPlayer.getSymbol());
 
 			out.println("Player 1 picks spot: " + spot);
 			out.println(board);
@@ -51,8 +53,8 @@ public final class Game
 				return;
 			}
 
-			spot = computer.getNextMove();
-			board.set(spot, "O");
+			spot = secondPlayer.getNextMove(board);
+			board.set(spot, secondPlayer.getSymbol());
 
 			out.println("Player 2 picks spot: " + spot);
 			out.println(board);

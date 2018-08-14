@@ -10,9 +10,9 @@ public class ComputerTest
 	public void firstMoveIsMiddleSquare()
 	{
 		Board board = new Board();
-		Player computer = new Computer(board);
+		Player computer = new Computer("O", "X");
 
-		int selectedSquare = computer.getNextMove();
+		int selectedSquare = computer.getNextMove(board);
 
 		assertEquals(4, selectedSquare);
 	}
@@ -21,12 +21,12 @@ public class ComputerTest
 	public void preventOpponentFromWinning()
 	{
 		Board board = new Board();
-		board.set(3, "X");
-		board.set(4, "X");
+		board.set(3, "#");
+		board.set(4, "#");
 
-		Player computer = new Computer(board);
+		Player computer = new Computer("O", "#");
 
-		int selectedSquare = computer.getNextMove();
+		int selectedSquare = computer.getNextMove(board);
 
 		assertEquals(5, selectedSquare);
 	}
@@ -35,12 +35,12 @@ public class ComputerTest
 	public void selectWinningMove()
 	{
 		Board board = new Board();
-		board.set(0, "O");
-		board.set(4, "O");
+		board.set(0, "@");
+		board.set(4, "@");
 
-		Player computer = new Computer(board);
+		Player computer = new Computer("@", "X");
 
-		int selectedSquare = computer.getNextMove();
+		int selectedSquare = computer.getNextMove(board);
 
 		assertEquals(8, selectedSquare);
 	}
@@ -52,9 +52,9 @@ public class ComputerTest
 		board.set(0, "O");
 		board.set(4, "X");
 
-		Player computer = new Computer(board);
+		Player computer = new Computer("O", "X");
 
-		int selectedSquare = computer.getNextMove();
+		int selectedSquare = computer.getNextMove(board);
 
 		assertEquals(0, selectedSquare % 2);
 	}

@@ -17,8 +17,9 @@ public class GameTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
+		PlayerSelection playerSelection = new FakePlayerSelection(in, out);
 
-		new Game(in, out).play();
+		new Game(out, playerSelection).play();
 
 		String expectedOutput =
 			" 0 | 1 | 2\n" +

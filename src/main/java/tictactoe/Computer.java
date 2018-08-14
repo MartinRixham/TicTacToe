@@ -4,14 +4,17 @@ import java.util.List;
 
 public class Computer implements Player
 {
-	private Board board;
+	private String symbol;
 
-	public Computer(Board board)
+	private String opponentSymbol;
+
+	public Computer(String symbol, String opponentSymbol)
 	{
-		this.board = board;
+		this.symbol = symbol;
+		this.opponentSymbol = opponentSymbol;
 	}
 
-	public int getNextMove()
+	public int getNextMove(Board board)
 	{
 		// First go in the middle.
 		if (board.isAvailable(4))
@@ -24,13 +27,13 @@ public class Computer implements Player
 		for (int spot : availableSpaces)
 		{
 			// Try to find a winning move.
-			if (winsAt(spot, "O"))
+			if (winsAt(spot, symbol, board))
 			{
 				return spot;
 			}
 
 			// Prevent an opponents winning move.
-			if (winsAt(spot, "X"))
+			if (winsAt(spot, opponentSymbol, board))
 			{
 				return spot;
 			}
@@ -48,7 +51,13 @@ public class Computer implements Player
 		return availableSpaces.get(0);
 	}
 
-	private boolean winsAt(int spot, String symbol)
+	@Override
+	public String getSymbol()
+	{
+		return symbol;
+	}
+
+	private boolean winsAt(int spot, String symbol, Board board)
 	{
 		boolean wins;
 
