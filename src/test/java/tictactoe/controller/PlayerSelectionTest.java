@@ -51,7 +51,7 @@ public class PlayerSelectionTest
 
 		assertEquals("", result.getOutput());
 		assertFalse(result.gameIsOver());
-		assertTrue(result.getNextController() instanceof PlayerSelection);
+		assertEquals(controller, result.getNextController());
 	}
 
 	@Test
@@ -63,6 +63,6 @@ public class PlayerSelectionTest
 
 		assertEquals("", result.getOutput());
 		assertFalse(result.gameIsOver());
-		assertTrue(result.getNextController() instanceof PlayerSelection);
+		assertEquals(controller, result.getNextController());
 	}
 }

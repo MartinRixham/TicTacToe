@@ -15,7 +15,7 @@ public class PlayerSelection implements Controller
 
 		if (input.equals("1") || input.equals("2"))
 		{
-			nextController = new SymbolSelection();
+			nextController = new SymbolSelection(input);
 		}
 		else
 		{

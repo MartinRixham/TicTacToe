@@ -11,10 +11,8 @@ public class Human implements Player
 
 	private String symbol;
 
-	public Human(Scanner in, PrintStream out, String symbol)
+	public Human(String symbol)
 	{
-		this.in = in;
-		this.out = out;
 		this.symbol = symbol;
 	}
 
