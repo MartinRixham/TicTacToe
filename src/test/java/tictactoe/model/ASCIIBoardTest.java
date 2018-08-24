@@ -1,4 +1,4 @@
-package tictactoe;
+package tictactoe.model;
 
 import org.junit.Test;
 

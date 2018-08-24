@@ -1,6 +1,6 @@
 package tictactoe.controller;
 
-public class PlayerSelection implements Controller
+public class PlayerSelectionController implements Controller
 {
 	@Override
 	public String prompt()
@@ -15,7 +15,7 @@ public class PlayerSelection implements Controller
 
 		if (input.equals("1") || input.equals("2"))
 		{
-			nextController = new SymbolSelection(input);
+			nextController = new SymbolSelectionController(input);
 		}
 		else
 		{

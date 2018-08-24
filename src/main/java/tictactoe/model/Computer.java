@@ -1,4 +1,6 @@
-package tictactoe;
+package tictactoe.model;
+
+import tictactoe.Player;
 
 import java.util.List;
 
@@ -51,7 +53,6 @@ public class Computer implements Player
 		return availableSpots.get(0);
 	}
 
-	@Override
 	public String getSymbol()
 	{
 		return symbol;

@@ -1,10 +1,12 @@
 package tictactoe.controller;
 
-import tictactoe.Computer;
-import tictactoe.Human;
 import tictactoe.Player;
+import tictactoe.model.ASCIIBoard;
+import tictactoe.model.Board;
+import tictactoe.model.Computer;
+import tictactoe.model.Human;
 
-public class SymbolSelection implements Controller
+public class SymbolSelectionController implements Controller
 {
 	private String firstPlayerNumber;
 
@@ -12,12 +14,12 @@ public class SymbolSelection implements Controller
 
 	private String secondPlayerNumber;
 
-	public SymbolSelection(String firstPlayerNumber)
+	public SymbolSelectionController(String firstPlayerNumber)
 	{
 		this.firstPlayerNumber = firstPlayerNumber;
 	}
 
-	public SymbolSelection(Player firstPlayer, String secondPlayerNumber)
+	public SymbolSelectionController(Player firstPlayer, String secondPlayerNumber)
 	{
 		this.firstPlayer = firstPlayer;
 		this.secondPlayerNumber = secondPlayerNumber;
@@ -40,7 +42,9 @@ public class SymbolSelection implements Controller
 		}
 		else if (firstPlayer instanceof Human)
 		{
-			nextController = new HumanController();
+			Board board = new ASCIIBoard();
+
+			nextController = new HumanController(board, (Human) firstPlayer);
 		}
 		else if (firstPlayer instanceof Computer)
 		{
@@ -48,7 +52,7 @@ public class SymbolSelection implements Controller
 		}
 		else
 		{
-			nextController = new PlayerSelection();
+			nextController = new PlayerSelectionController();
 		}
 
 		return new Result("", nextController, false);

@@ -1,5 +1,7 @@
 package tictactoe;
 
+import tictactoe.model.Board;
+
 import java.util.Arrays;
 import java.util.List;
 

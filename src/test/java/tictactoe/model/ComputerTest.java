@@ -1,4 +1,4 @@
-package tictactoe;
+package tictactoe.model;
 
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class ComputerTest
 	public void firstMoveIsMiddleSquare()
 	{
 		Board board = new ASCIIBoard();
-		Player computer = new Computer("O", "X");
+		Computer computer = new Computer("O", "X");
 
 		int selectedSquare = computer.getNextMove(board);
 
@@ -24,7 +24,7 @@ public class ComputerTest
 		board.set(3, "#");
 		board.set(4, "#");
 
-		Player computer = new Computer("O", "#");
+		Computer computer = new Computer("O", "#");
 
 		int selectedSquare = computer.getNextMove(board);
 
@@ -38,7 +38,7 @@ public class ComputerTest
 		board.set(0, "@");
 		board.set(4, "@");
 
-		Player computer = new Computer("@", "X");
+		Computer computer = new Computer("@", "X");
 
 		int selectedSquare = computer.getNextMove(board);
 
@@ -52,7 +52,7 @@ public class ComputerTest
 		board.set(0, "O");
 		board.set(4, "X");
 
-		Player computer = new Computer("O", "X");
+		Computer computer = new Computer("O", "X");
 
 		int selectedSquare = computer.getNextMove(board);
 
