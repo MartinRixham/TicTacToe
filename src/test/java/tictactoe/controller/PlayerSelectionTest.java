@@ -53,4 +53,16 @@ public class PlayerSelectionTest
 		assertFalse(result.gameIsOver());
 		assertTrue(result.getNextController() instanceof PlayerSelection);
 	}
+
+	@Test
+	public void nonNumberIsNotValid()
+	{
+		Controller controller = new PlayerSelection();
+
+		Result result = controller.handleInput("wibble");
+
+		assertEquals("", result.getOutput());
+		assertFalse(result.gameIsOver());
+		assertTrue(result.getNextController() instanceof PlayerSelection);
+	}
 }
