@@ -59,6 +59,11 @@ public class ASCIIBoard implements Board
 	@Override
 	public boolean isAvailable(int spot)
 	{
+		if (spot < 0 || spot >= board.length)
+		{
+			return false;
+		}
+
 		return board[spot].equals(Integer.toString(spot));
 	}
 

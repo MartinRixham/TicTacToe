@@ -43,6 +43,38 @@ public class HumanTest
 	}
 
 	@Test
+	public void handleTooLargeInput()
+	{
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		Scanner in = new Scanner(new ByteArrayInputStream("100\n1\n".getBytes()));
+		Board board = new ASCIIBoard();
+		Player human = new Human(in, out, "X");
+
+		assertEquals(1, human.getNextMove(board));
+		assertEquals(
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n" +
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n",
+			stream.toString());
+	}
+
+	@Test
+	public void handleTooSmallInput()
+	{
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(stream);
+		Scanner in = new Scanner(new ByteArrayInputStream("-1\n1\n".getBytes()));
+		Board board = new ASCIIBoard();
+		Player human = new Human(in, out, "X");
+
+		assertEquals(1, human.getNextMove(board));
+		assertEquals(
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n" +
+			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n",
+			stream.toString());
+	}
+
+	@Test
 	public void invalidPickFollowedByValidPick()
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
