@@ -1,6 +1,8 @@
 package tictactoe;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import tictactoe.controller.Controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GameTest
 {
+	@Ignore
 	@Test
 	public void losingGame()
 	{
@@ -90,89 +93,37 @@ public class GameTest
 	}
 
 	@Test
-	public void playerOneWins()
+	public void oneMoveGame()
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Board board = FakeBoard.playerOneWins();
 		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
-		PlayerSelection playerSelection = new FakePlayerSelection(in, out);
+		Controller controller = FakeController.gameOver();
 
-		new Game(out, board, playerSelection).play();
+		new Game(in, out, controller).play();
 
 		String expectedOutput =
-			"□\n" +
-			"Pick one of the available spots 0, 1, 2, 3:\n" +
-			"Player 1 picks spot: 1\n" +
-			"□\n" +
-			"Player 1 wins!\n";
+			"Write some input:\n" +
+			"Game over!\n";
 
 		assertEquals(expectedOutput, stream.toString());
 	}
 
 	@Test
-	public void playerTwoWins()
+	public void twoMoveGame()
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Board board = FakeBoard.playerTwoWins();
 		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
-		PlayerSelection playerSelection = new FakePlayerSelection(in, out);
+		Controller controller = FakeController.validInput();
 
-		new Game(out, board, playerSelection).play();
+		new Game(in, out, controller).play();
 
 		String expectedOutput =
-			"□\n" +
-			"Pick one of the available spots 0, 1, 2, 3:\n" +
-			"Player 1 picks spot: 1\n" +
-			"□\n" +
-			"Player 2 picks spot: 0\n" +
-			"□\n" +
-			"Player 2 wins!\n";
-
-		assertEquals(expectedOutput, stream.toString());
-	}
-
-	@Test
-	public void tieAfterFirstMove()
-	{
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		PrintStream out = new PrintStream(stream);
-		Board board = FakeBoard.tieAfterFirstMove();
-		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
-		PlayerSelection playerSelection = new FakePlayerSelection(in, out);
-
-		new Game(out, board, playerSelection).play();
-
-		String expectedOutput =
-			"□\n" +
-			"Pick one of the available spots 0, 1, 2, 3:\n" +
-			"Player 1 picks spot: 1\n" +
-			"□\n" +
-			"It's a tie!\n";
-
-		assertEquals(expectedOutput, stream.toString());
-	}
-
-	@Test
-	public void tieAfterSecondMove()
-	{
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		PrintStream out = new PrintStream(stream);
-		Board board = FakeBoard.tieAfterSecondMove();
-		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
-		PlayerSelection playerSelection = new FakePlayerSelection(in, out);
-
-		new Game(out, board, playerSelection).play();
-
-		String expectedOutput =
-			"□\n" +
-			"Pick one of the available spots 0, 1, 2, 3:\n" +
-			"Player 1 picks spot: 1\n" +
-			"□\n" +
-			"Player 2 picks spot: 0\n" +
-			"□\n" +
-			"It's a tie!\n";
+			"Write some input:\n" +
+			"Input was valid.\n" +
+			"Write some input:\n" +
+			"Game over!\n";
 
 		assertEquals(expectedOutput, stream.toString());
 	}

@@ -1,5 +1,9 @@
 package tictactoe;
 
+import tictactoe.controller.Controller;
+import tictactoe.controller.PlayerSelection;
+import tictactoe.controller.Result;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -7,37 +11,46 @@ public final class Game
 {
 	private PrintStream out;
 
-	private Board board;
+	private Scanner in;
 
-	private Player firstPlayer;
-
-	private Player secondPlayer;
+	private Controller controller;
 
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
 		PrintStream out = System.out;
-		Board board = new ASCIIBoard();
-		PlayerSelection playerSelection = new ManualPlayerSelection(in, out);
-		Game game = new Game(out, board, playerSelection);
+		Controller initialController = new PlayerSelection();
+		Game game = new Game(in, out, initialController);
+
 		game.play();
 	}
 
-	public Game(PrintStream out, Board board, PlayerSelection playerSelection)
+	public Game(Scanner in, PrintStream out, Controller initialController)
 	{
+		this.in = in;
 		this.out = out;
-		this.board = board;
-		this.firstPlayer = playerSelection.getFirstPlayer();
-		this.secondPlayer = playerSelection.getSecondPlayer();
+		this.controller = initialController;
 	}
 
 	public void play()
 	{
-		out.println(board);
-
 		while (true)
 		{
-			int spot = firstPlayer.getNextMove(board);
+			out.println(controller.prompt());
+
+			String line = in.nextLine();
+			Result result = controller.handleInput(line);
+
+			out.println(result.getOutput());
+
+			if (result.gameIsOver())
+			{
+				return;
+			}
+
+			controller = result.getNextController();
+
+			/*int spot = firstPlayer.getNextMove(board);
 			board.set(spot, firstPlayer.getSymbol());
 
 			out.println("Player 1 picks spot: " + spot);
@@ -71,7 +84,7 @@ public final class Game
 			{
 				out.println("It's a tie!");
 				return;
-			}
+			}*/
 		}
 	}
 }
