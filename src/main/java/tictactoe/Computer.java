@@ -22,9 +22,9 @@ public class Computer implements Player
 			return 4;
 		}
 
-		List<Integer> availableSpaces = board.getAvailableSpots();
+		List<Integer> availableSpots = board.getAvailableSpots();
 
-		for (int spot : availableSpaces)
+		for (int spot : availableSpots)
 		{
 			// Try to find a winning move.
 			if (winsAt(spot, symbol, board))
@@ -40,7 +40,7 @@ public class Computer implements Player
 		}
 
 		// Choose a corner if possible.
-		for (int spot: availableSpaces)
+		for (int spot: availableSpots)
 		{
 			if (spot % 2 == 0)
 			{
@@ -48,7 +48,7 @@ public class Computer implements Player
 			}
 		}
 
-		return availableSpaces.get(0);
+		return availableSpots.get(0);
 	}
 
 	@Override

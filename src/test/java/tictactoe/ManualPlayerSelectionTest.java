@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-public class TestManualPlayerSelection
+public class ManualPlayerSelectionTest
 {
 	@Test
 	public void humanCrossesPlaysComputerNoughts()

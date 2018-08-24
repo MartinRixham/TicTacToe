@@ -43,17 +43,17 @@ public class ASCIIBoard implements Board
 	@Override
 	public List<Integer> getAvailableSpots()
 	{
-		List<Integer> availableSpaces = new ArrayList<>();
+		List<Integer> availableSpots = new ArrayList<>();
 
 		for (int i = 0; i < board.length; i++)
 		{
 			if (isAvailable(i))
 			{
-				availableSpaces.add(i);
+				availableSpots.add(i);
 			}
 		}
 
-		return availableSpaces;
+		return availableSpots;
 	}
 
 	@Override
