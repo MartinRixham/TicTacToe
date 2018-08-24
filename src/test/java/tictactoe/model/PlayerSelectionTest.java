@@ -1,7 +1,6 @@
 package tictactoe.model;
 
 import org.junit.Test;
-import tictactoe.Player;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;

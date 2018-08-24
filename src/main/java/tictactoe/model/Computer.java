@@ -1,7 +1,5 @@
 package tictactoe.model;
 
-import tictactoe.Player;
-
 import java.util.List;
 
 public class Computer implements Player

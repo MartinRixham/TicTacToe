@@ -7,13 +7,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class PlayerSelectionControllerTest
+public class PlayerTypeSelectionControllerTest
 {
 	@Test
 	public void promptToSelectPlayer()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller controller = new PlayerSelectionController(playerSelection);
+		Controller controller = new PlayerTypeSelectionController(playerSelection);
 
 		assertEquals(
 			"Player 1\n1) human\n2) computer\nselect player:",
@@ -21,10 +21,24 @@ public class PlayerSelectionControllerTest
 	}
 
 	@Test
-	public void oneIsValid()
+	public void promptToSelectSecondPlayer()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller controller = new PlayerSelectionController(playerSelection);
+		playerSelection.selectPlayerType("1");
+		playerSelection.selectPlayerSymbol("X");
+
+		Controller controller = new PlayerTypeSelectionController(playerSelection);
+
+		assertEquals(
+			"Player 2\n1) human\n2) computer\nselect player:",
+			controller.prompt());
+	}
+
+	@Test
+	public void validInput()
+	{
+		PlayerSelection playerSelection = new PlayerSelection();
+		Controller controller = new PlayerTypeSelectionController(playerSelection);
 
 		Result result = controller.handleInput("1");
 
@@ -34,10 +48,10 @@ public class PlayerSelectionControllerTest
 	}
 
 	@Test
-	public void nonNumberIsNotValid()
+	public void invalidInput()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller controller = new PlayerSelectionController(playerSelection);
+		Controller controller = new PlayerTypeSelectionController(playerSelection);
 
 		Result result = controller.handleInput("wibble");
 

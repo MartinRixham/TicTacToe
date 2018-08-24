@@ -19,7 +19,7 @@ public class SymbolSelectionControllerTest
 	}
 
 	@Test
-	public void symbolLengthOneIsValid()
+	public void validInput()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
 		Controller controller = new SymbolSelectionController(playerSelection);
@@ -28,11 +28,11 @@ public class SymbolSelectionControllerTest
 
 		assertEquals("", result.getOutput());
 		assertFalse(result.gameIsOver());
-		assertTrue(result.getNextController() instanceof PlayerSelectionController);
+		assertTrue(result.getNextController() instanceof PlayerTypeSelectionController);
 	}
 
 	@Test
-	public void symbolLengthTwoIsNotValid()
+	public void invalidInput()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
 		Controller controller = new SymbolSelectionController(playerSelection);

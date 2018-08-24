@@ -6,12 +6,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class ASCIIBoardTest
+public class BoardTest
 {
 	@Test
 	public void printStartingBoard()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 
 		String expectedBoard =
 			" 0 | 1 | 2\n" +
@@ -28,7 +28,7 @@ public class ASCIIBoardTest
 	@Test
 	public void printBoardWithXInTopLeftCorner()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "X");
 
 		String expectedBoard =
@@ -46,7 +46,7 @@ public class ASCIIBoardTest
 	@Test
 	public void topLineWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "X");
 		board.set(1, "X");
 		board.set(2, "X");
@@ -58,7 +58,7 @@ public class ASCIIBoardTest
 	@Test
 	public void middleLineWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(3, "X");
 		board.set(4, "X");
 		board.set(5, "X");
@@ -70,7 +70,7 @@ public class ASCIIBoardTest
 	@Test
 	public void bottomLineWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(6, "X");
 		board.set(7, "X");
 		board.set(8, "X");
@@ -82,7 +82,7 @@ public class ASCIIBoardTest
 	@Test
 	public void firstColumnWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "X");
 		board.set(3, "X");
 		board.set(6, "X");
@@ -94,7 +94,7 @@ public class ASCIIBoardTest
 	@Test
 	public void middleColumnWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(1, "X");
 		board.set(4, "X");
 		board.set(7, "X");
@@ -106,7 +106,7 @@ public class ASCIIBoardTest
 	@Test
 	public void finalColumnWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(2, "X");
 		board.set(5, "X");
 		board.set(8, "X");
@@ -118,7 +118,7 @@ public class ASCIIBoardTest
 	@Test
 	public void forwardDiagonalWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(6, "X");
 		board.set(4, "X");
 		board.set(2, "X");
@@ -130,7 +130,7 @@ public class ASCIIBoardTest
 	@Test
 	public void backwardDiagonalWins()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "X");
 		board.set(4, "X");
 		board.set(8, "X");
@@ -142,7 +142,7 @@ public class ASCIIBoardTest
 	@Test
 	public void fullBoardIsATie()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "O");
 		board.set(1, "O");
 		board.set(2, "X");

@@ -1,7 +1,6 @@
 package tictactoe.controller;
 
 import org.junit.Test;
-import tictactoe.model.ASCIIBoard;
 import tictactoe.model.Board;
 import tictactoe.model.Human;
 
@@ -13,7 +12,7 @@ public class HumanControllerTest
 	@Test
 	public void promptToSelectSpot()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		Human human = new Human("X");
 
 		Controller controller = new HumanController(board, human);
@@ -26,7 +25,7 @@ public class HumanControllerTest
 	@Test
 	public void validPick()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		Human human = new Human("X");
 
 		Controller controller = new HumanController(board, human);
@@ -48,7 +47,7 @@ public class HumanControllerTest
 	@Test
 	public void invalidPick()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		Human human = new Human("X");
 
 		Controller controller = new HumanController(board, human);

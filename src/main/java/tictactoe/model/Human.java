@@ -1,7 +1,5 @@
 package tictactoe.model;
 
-import tictactoe.Player;
-
 public class Human implements Player
 {
 	private String symbol;

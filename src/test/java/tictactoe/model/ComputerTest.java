@@ -9,7 +9,7 @@ public class ComputerTest
 	@Test
 	public void firstMoveIsMiddleSquare()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		Computer computer = new Computer("O", "X");
 
 		int selectedSquare = computer.selectSpot(board);
@@ -20,7 +20,7 @@ public class ComputerTest
 	@Test
 	public void preventOpponentFromWinning()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(3, "#");
 		board.set(4, "#");
 
@@ -34,7 +34,7 @@ public class ComputerTest
 	@Test
 	public void selectWinningMove()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "@");
 		board.set(4, "@");
 
@@ -48,7 +48,7 @@ public class ComputerTest
 	@Test
 	public void selectCornerIfPossible()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		board.set(0, "O");
 		board.set(4, "X");
 

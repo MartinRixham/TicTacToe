@@ -1,7 +1,6 @@
 package tictactoe.controller;
 
 import org.junit.Test;
-import tictactoe.model.ASCIIBoard;
 import tictactoe.model.Board;
 import tictactoe.model.Computer;
 
@@ -13,7 +12,7 @@ public class ComputerControllerTest
 	@Test
 	public void testComputerMove()
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 		Computer computer = new Computer("X", "O");
 		Controller opponentController = new ComputerController(board, computer);
 

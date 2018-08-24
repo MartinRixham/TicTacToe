@@ -1,7 +1,7 @@
 package tictactoe;
 
 import tictactoe.controller.Controller;
-import tictactoe.controller.PlayerSelectionController;
+import tictactoe.controller.PlayerTypeSelectionController;
 import tictactoe.controller.Result;
 import tictactoe.model.PlayerSelection;
 
@@ -21,7 +21,7 @@ public final class Game
 		Scanner in = new Scanner(System.in);
 		PrintStream out = System.out;
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller initialController = new PlayerSelectionController(playerSelection);
+		Controller initialController = new PlayerTypeSelectionController(playerSelection);
 		Game game = new Game(in, out, initialController);
 
 		game.play();
@@ -51,42 +51,6 @@ public final class Game
 			}
 
 			controller = result.getNextController();
-
-			/*int spot = firstPlayer.getNextMove(board);
-			board.set(spot, firstPlayer.getSymbol());
-
-			out.println("Player 1 picks spot: " + spot);
-			out.println(board);
-
-			if (board.gameIsOver())
-			{
-				out.println("Player 1 wins!");
-				return;
-			}
-
-			if (board.isTied())
-			{
-				out.println("It's a tie!");
-				return;
-			}
-
-			spot = secondPlayer.getNextMove(board);
-			board.set(spot, secondPlayer.getSymbol());
-
-			out.println("Player 2 picks spot: " + spot);
-			out.println(board);
-
-			if (board.gameIsOver())
-			{
-				out.println("Player 2 wins!");
-				return;
-			}
-
-			if (board.isTied())
-			{
-				out.println("It's a tie!");
-				return;
-			}*/
 		}
 	}
 }

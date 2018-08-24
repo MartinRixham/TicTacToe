@@ -2,11 +2,11 @@ package tictactoe.controller;
 
 import tictactoe.model.PlayerSelection;
 
-public class PlayerSelectionController implements Controller
+public class PlayerTypeSelectionController implements Controller
 {
 	private PlayerSelection playerSelection;
 
-	public PlayerSelectionController(PlayerSelection playerSelection)
+	public PlayerTypeSelectionController(PlayerSelection playerSelection)
 	{
 		this.playerSelection = playerSelection;
 	}
@@ -14,7 +14,9 @@ public class PlayerSelectionController implements Controller
 	@Override
 	public String prompt()
 	{
-		return "Player 1\n1) human\n2) computer\nselect player:";
+		int number = playerSelection.getFirstPlayer() == null ? 1 : 2;
+
+		return "Player " + number + "\n1) human\n2) computer\nselect player:";
 	}
 
 	@Override

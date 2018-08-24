@@ -1,7 +1,6 @@
 package tictactoe.controller;
 
-import tictactoe.Player;
-import tictactoe.model.ASCIIBoard;
+import tictactoe.model.Player;
 import tictactoe.model.Board;
 import tictactoe.model.Computer;
 import tictactoe.model.Human;
@@ -38,7 +37,7 @@ public class SymbolSelectionController implements Controller
 			}
 			else
 			{
-				nextController = new PlayerSelectionController(playerSelection);
+				nextController = new PlayerTypeSelectionController(playerSelection);
 			}
 		}
 		else
@@ -51,7 +50,7 @@ public class SymbolSelectionController implements Controller
 
 	private Controller getGameplayController(Player firstPlayer, Player secondPlayer)
 	{
-		Board board = new ASCIIBoard();
+		Board board = new Board();
 
 		if (firstPlayer instanceof Human)
 		{
