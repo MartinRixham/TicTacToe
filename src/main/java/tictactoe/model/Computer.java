@@ -16,7 +16,16 @@ public class Computer implements Player
 		this.opponentSymbol = opponentSymbol;
 	}
 
-	public int getNextMove(Board board)
+	public int selectSpot(Board board)
+	{
+		int spot = getNextMove(board);
+
+		board.set(spot, symbol);
+
+		return spot;
+	}
+
+	private int getNextMove(Board board)
 	{
 		// First go in the middle.
 		if (board.isAvailable(4))

@@ -12,7 +12,7 @@ public class ComputerTest
 		Board board = new ASCIIBoard();
 		Computer computer = new Computer("O", "X");
 
-		int selectedSquare = computer.getNextMove(board);
+		int selectedSquare = computer.selectSpot(board);
 
 		assertEquals(4, selectedSquare);
 	}
@@ -26,7 +26,7 @@ public class ComputerTest
 
 		Computer computer = new Computer("O", "#");
 
-		int selectedSquare = computer.getNextMove(board);
+		int selectedSquare = computer.selectSpot(board);
 
 		assertEquals(5, selectedSquare);
 	}
@@ -40,7 +40,7 @@ public class ComputerTest
 
 		Computer computer = new Computer("@", "X");
 
-		int selectedSquare = computer.getNextMove(board);
+		int selectedSquare = computer.selectSpot(board);
 
 		assertEquals(8, selectedSquare);
 	}
@@ -54,7 +54,7 @@ public class ComputerTest
 
 		Computer computer = new Computer("O", "X");
 
-		int selectedSquare = computer.getNextMove(board);
+		int selectedSquare = computer.selectSpot(board);
 
 		assertEquals(0, selectedSquare % 2);
 	}

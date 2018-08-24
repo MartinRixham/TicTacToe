@@ -34,6 +34,8 @@ public class SymbolSelectionController implements Controller
 	@Override
 	public Result handleInput(String input)
 	{
+		Board board = new ASCIIBoard();
+
 		Controller nextController;
 
 		if (input.length() != 1)
@@ -42,13 +44,11 @@ public class SymbolSelectionController implements Controller
 		}
 		else if (firstPlayer instanceof Human)
 		{
-			Board board = new ASCIIBoard();
-
 			nextController = new HumanController(board, (Human) firstPlayer);
 		}
 		else if (firstPlayer instanceof Computer)
 		{
-			nextController = new ComputerController();
+			nextController = new ComputerController(board, (Computer) firstPlayer);
 		}
 		else
 		{
