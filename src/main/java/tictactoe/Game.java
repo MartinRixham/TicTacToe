@@ -3,6 +3,7 @@ package tictactoe;
 import tictactoe.controller.Controller;
 import tictactoe.controller.PlayerSelectionController;
 import tictactoe.controller.Result;
+import tictactoe.model.PlayerSelection;
 
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -19,7 +20,8 @@ public final class Game
 	{
 		Scanner in = new Scanner(System.in);
 		PrintStream out = System.out;
-		Controller initialController = new PlayerSelectionController();
+		PlayerSelection playerSelection = new PlayerSelection();
+		Controller initialController = new PlayerSelectionController(playerSelection);
 		Game game = new Game(in, out, initialController);
 
 		game.play();

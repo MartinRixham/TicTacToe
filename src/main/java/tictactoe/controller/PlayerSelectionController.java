@@ -1,7 +1,16 @@
 package tictactoe.controller;
 
+import tictactoe.model.PlayerSelection;
+
 public class PlayerSelectionController implements Controller
 {
+	private PlayerSelection playerSelection;
+
+	public PlayerSelectionController(PlayerSelection playerSelection)
+	{
+		this.playerSelection = playerSelection;
+	}
+
 	@Override
 	public String prompt()
 	{
@@ -13,9 +22,9 @@ public class PlayerSelectionController implements Controller
 	{
 		Controller nextController;
 
-		if (input.equals("1") || input.equals("2"))
+		if (playerSelection.selectPlayerType(input))
 		{
-			nextController = new SymbolSelectionController(input);
+			nextController = new SymbolSelectionController(playerSelection);
 		}
 		else
 		{

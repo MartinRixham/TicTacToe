@@ -5,24 +5,15 @@ import tictactoe.model.ASCIIBoard;
 import tictactoe.model.Board;
 import tictactoe.model.Computer;
 import tictactoe.model.Human;
+import tictactoe.model.PlayerSelection;
 
 public class SymbolSelectionController implements Controller
 {
-	private String firstPlayerNumber;
+	private PlayerSelection playerSelection;
 
-	private Player firstPlayer;
-
-	private String secondPlayerNumber;
-
-	public SymbolSelectionController(String firstPlayerNumber)
+	public SymbolSelectionController(PlayerSelection playerSelection)
 	{
-		this.firstPlayerNumber = firstPlayerNumber;
-	}
-
-	public SymbolSelectionController(Player firstPlayer, String secondPlayerNumber)
-	{
-		this.firstPlayer = firstPlayer;
-		this.secondPlayerNumber = secondPlayerNumber;
+		this.playerSelection = playerSelection;
 	}
 
 	@Override
@@ -34,27 +25,41 @@ public class SymbolSelectionController implements Controller
 	@Override
 	public Result handleInput(String input)
 	{
-		Board board = new ASCIIBoard();
-
 		Controller nextController;
 
-		if (input.length() != 1)
+		if (playerSelection.selectPlayerSymbol(input))
 		{
-			nextController = this;
-		}
-		else if (firstPlayer instanceof Human)
-		{
-			nextController = new HumanController(board, (Human) firstPlayer);
-		}
-		else if (firstPlayer instanceof Computer)
-		{
-			nextController = new ComputerController(board, (Computer) firstPlayer);
+			Player firstPlayer = playerSelection.getFirstPlayer();
+			Player secondPlayer = playerSelection.getSecondPlayer();
+
+			if (firstPlayer != null && secondPlayer != null)
+			{
+				nextController = getGameplayController(firstPlayer, secondPlayer);
+			}
+			else
+			{
+				nextController = new PlayerSelectionController(playerSelection);
+			}
 		}
 		else
 		{
-			nextController = new PlayerSelectionController();
+			nextController = this;
 		}
 
 		return new Result("", nextController, false);
+	}
+
+	private Controller getGameplayController(Player firstPlayer, Player secondPlayer)
+	{
+		Board board = new ASCIIBoard();
+
+		if (firstPlayer instanceof Human)
+		{
+			return new HumanController(board, (Human) firstPlayer);
+		}
+		else
+		{
+			return new ComputerController(board, (Computer) firstPlayer);
+		}
 	}
 }
