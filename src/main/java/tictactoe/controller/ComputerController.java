@@ -27,9 +27,10 @@ public class ComputerController implements PlayerController
 	public Result handleInput(String input)
 	{
 		int spot = computer.selectSpot(board);
+		int number = computer.isFirstPlayer() ? 1 : 2;
 
 		String output =
-			"Player 1 picks spot: " + spot + "\n" + board;
+			"Player " + number + " picks spot: " + spot + "\n" + board;
 
 		return new Result(output, opponentController, board.gameIsOver());
 	}

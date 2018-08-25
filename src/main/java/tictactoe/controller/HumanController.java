@@ -33,8 +33,10 @@ public class HumanController implements PlayerController
 
 		if (success)
 		{
+			int number = human.isFirstPlayer() ? 1 : 2;
+
 			String output =
-				"Player 1 picks spot: " + input + "\n" + board;
+				"Player " + number + " picks spot: " + input + "\n" + board;
 
 			return new Result(output, opponentController, board.gameIsOver());
 		}

@@ -14,7 +14,7 @@ public class ComputerControllerTest
 	public void computerMove()
 	{
 		Board board = new Board();
-		Computer computer = new Computer("X", "O");
+		Computer computer = new Computer("X", true);
 		PlayerController opponentController = new ComputerController(board, computer);
 
 		PlayerController controller = new ComputerController(board, computer);
@@ -38,13 +38,35 @@ public class ComputerControllerTest
 	}
 
 	@Test
+	public void secondPlayerComputerMove()
+	{
+		Board board = new Board();
+		Computer computer = new Computer("X", false);
+
+		PlayerController controller = new ComputerController(board, computer);
+
+		Result result = controller.handleInput("");
+
+		String expectedOutput =
+			"Player 2 picks spot: 4\n" +
+			" 0 | 1 | 2\n" +
+			"===+===+===\n" +
+			" 3 | X | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n";
+
+		assertEquals(expectedOutput, result.getOutput());
+		assertFalse(result.gameIsOver());
+	}
+
+	@Test
 	public void gameOver()
 	{
 		Board board = new Board();
 		board.set(3, "X");
 		board.set(5, "X");
 
-		Computer computer = new Computer("X", "O");
+		Computer computer = new Computer("X", true);
 		PlayerController opponentController = new ComputerController(board, computer);
 
 		PlayerController controller = new ComputerController(board, computer);

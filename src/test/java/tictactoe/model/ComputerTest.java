@@ -3,6 +3,8 @@ package tictactoe.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ComputerTest
 {
@@ -10,25 +12,27 @@ public class ComputerTest
 	public void firstMoveIsMiddleSquare()
 	{
 		Board board = new Board();
-		Computer computer = new Computer("O", "X");
+		Computer computer = new Computer("O", true);
 
 		int selectedSquare = computer.selectSpot(board);
 
 		assertEquals(4, selectedSquare);
+		assertTrue(computer.isFirstPlayer());
 	}
 
 	@Test
 	public void preventOpponentFromWinning()
 	{
 		Board board = new Board();
-		board.set(3, "#");
-		board.set(4, "#");
+		board.set(3, "X");
+		board.set(4, "X");
 
-		Computer computer = new Computer("O", "#");
+		Computer computer = new Computer("O", false);
 
 		int selectedSquare = computer.selectSpot(board);
 
 		assertEquals(5, selectedSquare);
+		assertFalse(computer.isFirstPlayer());
 	}
 
 	@Test
@@ -38,7 +42,7 @@ public class ComputerTest
 		board.set(0, "@");
 		board.set(4, "@");
 
-		Computer computer = new Computer("@", "X");
+		Computer computer = new Computer("@", true);
 
 		int selectedSquare = computer.selectSpot(board);
 
@@ -52,7 +56,7 @@ public class ComputerTest
 		board.set(0, "O");
 		board.set(4, "X");
 
-		Computer computer = new Computer("O", "X");
+		Computer computer = new Computer("O", true);
 
 		int selectedSquare = computer.selectSpot(board);
 

@@ -3,6 +3,9 @@ package tictactoe;
 import org.junit.Ignore;
 import org.junit.Test;
 import tictactoe.controller.Controller;
+import tictactoe.controller.HumanController;
+import tictactoe.model.Board;
+import tictactoe.model.Human;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -97,14 +100,25 @@ public class GameTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
-		Controller controller = FakeController.gameOver();
+		Scanner in = new Scanner(new ByteArrayInputStream("2\n".getBytes()));
+		Human human = new Human("X", true);
+
+		Board board = new Board();
+		board.set(0, "X");
+		board.set(1, "X");
+
+		Controller controller = new HumanController(board, human);
 
 		new Game(in, out, controller).play();
 
 		String expectedOutput =
-			"Write some input:\n" +
-			"Game over!\n";
+			"Pick one of the available spots 2, 3, 4, 5, 6, 7, 8:\n" +
+			"Player 1 picks spot: 2\n" +
+			" X | X | X\n" +
+			"===+===+===\n" +
+			" 3 | 4 | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n\n";
 
 		assertEquals(expectedOutput, stream.toString());
 	}

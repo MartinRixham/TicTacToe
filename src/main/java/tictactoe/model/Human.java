@@ -4,9 +4,12 @@ public class Human implements Player
 {
 	private String symbol;
 
-	public Human(String symbol)
+	private boolean firstPlayer;
+
+	public Human(String symbol, boolean firstPlayer)
 	{
 		this.symbol = symbol;
+		this.firstPlayer = firstPlayer;
 	}
 
 	public boolean selectSpot(String input, Board board)
@@ -38,5 +41,11 @@ public class Human implements Player
 		}
 
 		return true;
+	}
+
+	@Override
+	public boolean isFirstPlayer()
+	{
+		return firstPlayer;
 	}
 }

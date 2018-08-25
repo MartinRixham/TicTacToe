@@ -6,12 +6,12 @@ public class Computer implements Player
 {
 	private String symbol;
 
-	private String opponentSymbol;
+	private boolean firstPlayer;
 
-	public Computer(String symbol, String opponentSymbol)
+	public Computer(String symbol, boolean firstPlayer)
 	{
 		this.symbol = symbol;
-		this.opponentSymbol = opponentSymbol;
+		this.firstPlayer = firstPlayer;
 	}
 
 	public int selectSpot(Board board)
@@ -42,7 +42,7 @@ public class Computer implements Player
 			}
 
 			// Prevent an opponents winning move.
-			if (winsAt(spot, opponentSymbol, board))
+			if (winsAt(spot, "X", board))
 			{
 				return spot;
 			}
@@ -60,11 +60,6 @@ public class Computer implements Player
 		return availableSpots.get(0);
 	}
 
-	public String getSymbol()
-	{
-		return symbol;
-	}
-
 	private boolean winsAt(int spot, String symbol, Board board)
 	{
 		boolean wins;
@@ -74,5 +69,11 @@ public class Computer implements Player
 		board.set(spot, Integer.toString(spot));
 
 		return wins;
+	}
+
+	@Override
+	public boolean isFirstPlayer()
+	{
+		return firstPlayer;
 	}
 }
