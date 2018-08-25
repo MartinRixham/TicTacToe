@@ -35,6 +35,12 @@ public class ComputerController implements PlayerController
 	}
 
 	@Override
+	public boolean requiresInput()
+	{
+		return false;
+	}
+
+	@Override
 	public void setOpponentController(PlayerController opponentController)
 	{
 		this.opponentController = opponentController;

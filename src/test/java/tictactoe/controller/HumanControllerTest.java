@@ -7,6 +7,7 @@ import tictactoe.model.Human;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class HumanControllerTest
 {
@@ -18,6 +19,7 @@ public class HumanControllerTest
 
 		Controller controller = new HumanController(board, human);
 
+		assertTrue(controller.requiresInput());
 		assertEquals(
 			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:",
 			controller.prompt());

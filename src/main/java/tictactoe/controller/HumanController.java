@@ -45,6 +45,12 @@ public class HumanController implements PlayerController
 	}
 
 	@Override
+	public boolean requiresInput()
+	{
+		return true;
+	}
+
+	@Override
 	public void setOpponentController(PlayerController opponentController)
 	{
 		this.opponentController = opponentController;

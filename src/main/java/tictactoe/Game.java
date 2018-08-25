@@ -39,9 +39,14 @@ public final class Game
 		while (true)
 		{
 			out.println(controller.prompt());
+			String input = "";
 
-			String line = in.nextLine();
-			Result result = controller.handleInput(line);
+			if (controller.requiresInput())
+			{
+				input = in.nextLine();
+			}
+
+			Result result = controller.handleInput(input);
 
 			out.println(result.getOutput());
 

@@ -35,4 +35,10 @@ public class PlayerTypeSelectionController implements Controller
 
 		return new Result("", nextController, false);
 	}
+
+	@Override
+	public boolean requiresInput()
+	{
+		return true;
+	}
 }

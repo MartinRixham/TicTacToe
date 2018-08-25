@@ -42,4 +42,10 @@ public final class FakeController implements Controller
 	{
 		return result;
 	}
+
+	@Override
+	public boolean requiresInput()
+	{
+		return true;
+	}
 }

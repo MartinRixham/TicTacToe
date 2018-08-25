@@ -48,6 +48,12 @@ public class SymbolSelectionController implements Controller
 		return new Result("", nextController, false);
 	}
 
+	@Override
+	public boolean requiresInput()
+	{
+		return true;
+	}
+
 	private Controller getPlayerController(Player firstPlayer, Player secondPlayer)
 	{
 		Board board = new Board();

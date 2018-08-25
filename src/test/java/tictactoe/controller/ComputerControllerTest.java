@@ -29,6 +29,7 @@ public class ComputerControllerTest
 			"===+===+===\n" +
 			" 6 | 7 | 8\n";
 
+		assertFalse(controller.requiresInput());
 		assertEquals(expectedOutput, result.getOutput());
 		assertEquals(opponentController, result.getNextController());
 		assertFalse(result.gameIsOver());
