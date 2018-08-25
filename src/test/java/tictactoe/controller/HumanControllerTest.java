@@ -68,4 +68,32 @@ public class HumanControllerTest
 		assertFalse(result.gameIsOver());
 		assertEquals(controller, result.getNextController());
 	}
+
+	@Test
+	public void gameOver()
+	{
+		Board board = new Board();
+		board.set(0, "X");
+		board.set(1, "X");
+
+		Computer computer = new Computer("O", "X");
+		PlayerController opponentController = new ComputerController(board, computer);
+		Human human = new Human("X");
+
+		PlayerController controller = new HumanController(board, human);
+		controller.setOpponentController(opponentController);
+
+		Result result = controller.handleInput("2");
+
+		String expectedOutput =
+			"Player 1 picks spot: 2\n" +
+			" X | X | X\n" +
+			"===+===+===\n" +
+			" 3 | 4 | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n";
+
+		assertEquals(expectedOutput, result.getOutput());
+		assertTrue(result.gameIsOver());
+	}
 }

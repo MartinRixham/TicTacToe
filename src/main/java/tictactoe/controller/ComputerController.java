@@ -31,7 +31,7 @@ public class ComputerController implements PlayerController
 		String output =
 			"Player 1 picks spot: " + spot + "\n" + board;
 
-		return new Result(output, opponentController, false);
+		return new Result(output, opponentController, board.gameIsOver());
 	}
 
 	@Override
