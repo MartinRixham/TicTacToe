@@ -24,8 +24,6 @@ public class SymbolSelectionController implements Controller
 	@Override
 	public Result handleInput(String input)
 	{
-		Controller nextController;
-
 		if (playerSelection.selectPlayerSymbol(input))
 		{
 			Player firstPlayer = playerSelection.getFirstPlayer();
@@ -33,19 +31,27 @@ public class SymbolSelectionController implements Controller
 
 			if (firstPlayer != null && secondPlayer != null)
 			{
-				nextController = getPlayerController(firstPlayer, secondPlayer);
+				String firstSymbol = playerSelection.getFirstSymbol();
+				String secondSymbol = playerSelection.getSecondSymbol();
+				Board board = new Board(firstSymbol, secondSymbol);
+
+				Controller controller =
+					getPlayerController(firstPlayer, secondPlayer, board);
+
+				 return new Result("\n" + board.toString(), controller, false);
 			}
 			else
 			{
-				nextController = new PlayerTypeSelectionController(playerSelection);
+				Controller controller =
+					new PlayerTypeSelectionController(playerSelection);
+
+				return new Result("", controller, false);
 			}
 		}
 		else
 		{
-			nextController = this;
+			return new Result("", this, false);
 		}
-
-		return new Result("", nextController, false);
 	}
 
 	@Override
@@ -54,9 +60,11 @@ public class SymbolSelectionController implements Controller
 		return true;
 	}
 
-	private Controller getPlayerController(Player firstPlayer, Player secondPlayer)
+	private Controller getPlayerController(
+		Player firstPlayer,
+		Player secondPlayer,
+		Board board)
 	{
-		Board board = new Board();
 		PlayerController playerController = getController(board, firstPlayer);
 		PlayerController opponentController = getController(board, secondPlayer);
 

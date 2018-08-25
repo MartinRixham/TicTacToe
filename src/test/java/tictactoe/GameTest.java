@@ -1,6 +1,5 @@
 package tictactoe;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import tictactoe.controller.ComputerController;
 import tictactoe.controller.Controller;
@@ -20,7 +19,6 @@ import static org.junit.Assert.assertEquals;
 
 public class GameTest
 {
-	@Ignore
 	@Test
 	public void losingGame()
 	{
@@ -105,11 +103,11 @@ public class GameTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		Scanner in = new Scanner(new ByteArrayInputStream("2\n3\n4\n".getBytes()));
-		Human human = new Human("X", true);
+		Human human = new Human(true);
 
-		Board board = new Board();
-		board.set(0, "X");
-		board.set(1, "X");
+		Board board = new Board("X", "O");
+		board.set(0, true);
+		board.set(1, true);
 
 		Controller controller = new HumanController(board, human);
 
@@ -122,7 +120,8 @@ public class GameTest
 			"===+===+===\n" +
 			" 3 | 4 | 5\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n\n";
+			" 6 | 7 | 8\n\n" +
+			"Player 1 wins!\n";
 
 		assertEquals(expectedOutput, stream.toString());
 	}
@@ -133,12 +132,12 @@ public class GameTest
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
 		Scanner in = new Scanner(new ByteArrayInputStream("2\n3\n4\n".getBytes()));
-		Human human = new Human("X", false);
-		Computer computer = new Computer("O", true);
+		Human human = new Human(false);
+		Computer computer = new Computer(true);
 
-		Board board = new Board();
-		board.set(0, "X");
-		board.set(1, "X");
+		Board board = new Board("O", "X");
+		board.set(0, false);
+		board.set(1, false);
 
 		PlayerController opponentController = new HumanController(board, human);
 		PlayerController controller = new ComputerController(board, computer);
@@ -162,8 +161,8 @@ public class GameTest
 			"===+===+===\n" +
 			" 3 | O | 5\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n" +
-			"\n";
+			" 6 | 7 | 8\n\n" +
+			"Player 2 wins!\n";
 
 		assertEquals(expectedOutput, stream.toString());
 	}

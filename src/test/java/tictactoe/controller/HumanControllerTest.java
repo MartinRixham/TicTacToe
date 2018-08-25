@@ -14,8 +14,8 @@ public class HumanControllerTest
 	@Test
 	public void promptToSelectSpot()
 	{
-		Board board = new Board();
-		Human human = new Human("X", true);
+		Board board = new Board("X", "O");
+		Human human = new Human(true);
 
 		Controller controller = new HumanController(board, human);
 
@@ -28,10 +28,10 @@ public class HumanControllerTest
 	@Test
 	public void validPick()
 	{
-		Board board = new Board();
-		Computer computer = new Computer("X", false);
+		Board board = new Board("X", "O");
+		Computer computer = new Computer(false);
 		PlayerController opponentController = new ComputerController(board, computer);
-		Human human = new Human("X", true);
+		Human human = new Human(true);
 
 		PlayerController controller = new HumanController(board, human);
 		controller.setOpponentController(opponentController);
@@ -54,8 +54,8 @@ public class HumanControllerTest
 	@Test
 	public void secondPlayerPick()
 	{
-		Board board = new Board();
-		Human human = new Human("X", false);
+		Board board = new Board("X", "O");
+		Human human = new Human(false);
 
 		PlayerController controller = new HumanController(board, human);
 
@@ -65,7 +65,7 @@ public class HumanControllerTest
 			"Player 2 picks spot: 3\n" +
 			" 0 | 1 | 2\n" +
 			"===+===+===\n" +
-			" X | 4 | 5\n" +
+			" O | 4 | 5\n" +
 			"===+===+===\n" +
 			" 6 | 7 | 8\n";
 
@@ -76,10 +76,10 @@ public class HumanControllerTest
 	@Test
 	public void invalidPick()
 	{
-		Board board = new Board();
-		Computer computer = new Computer("X", true);
+		Board board = new Board("X", "O");
+		Computer computer = new Computer(true);
 		PlayerController opponentController = new ComputerController(board, computer);
-		Human human = new Human("X", true);
+		Human human = new Human(true);
 
 		PlayerController controller = new HumanController(board, human);
 		controller.setOpponentController(opponentController);
@@ -94,13 +94,13 @@ public class HumanControllerTest
 	@Test
 	public void gameOver()
 	{
-		Board board = new Board();
-		board.set(0, "X");
-		board.set(1, "X");
+		Board board = new Board("X", "O");
+		board.set(0, true);
+		board.set(1, true);
 
-		Computer computer = new Computer("O", false);
+		Computer computer = new Computer(false);
 		PlayerController opponentController = new ComputerController(board, computer);
-		Human human = new Human("X", true);
+		Human human = new Human(true);
 
 		PlayerController controller = new HumanController(board, human);
 		controller.setOpponentController(opponentController);
@@ -113,7 +113,8 @@ public class HumanControllerTest
 			"===+===+===\n" +
 			" 3 | 4 | 5\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 6 | 7 | 8\n\n" +
+			"Player 1 wins!";
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertTrue(result.gameIsOver());

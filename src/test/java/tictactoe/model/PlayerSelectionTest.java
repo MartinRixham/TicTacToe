@@ -2,6 +2,7 @@ package tictactoe.model;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -79,6 +80,7 @@ public class PlayerSelectionTest
 
 		assertTrue(player instanceof Human);
 		assertNull(playerSelection.getSecondPlayer());
+		assertEquals("X", playerSelection.getFirstSymbol());
 	}
 
 	@Test
@@ -86,12 +88,13 @@ public class PlayerSelectionTest
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
 		playerSelection.selectPlayerType("2");
-		playerSelection.selectPlayerSymbol("X");
+		playerSelection.selectPlayerSymbol("O");
 
 		Player player = playerSelection.getFirstPlayer();
 
 		assertTrue(player instanceof Computer);
 		assertNull(playerSelection.getSecondPlayer());
+		assertEquals("O", playerSelection.getFirstSymbol());
 	}
 
 	@Test
@@ -108,5 +111,8 @@ public class PlayerSelectionTest
 
 		assertTrue(firstPlayer instanceof Computer);
 		assertTrue(secondPlayer instanceof Computer);
+
+		assertEquals("X", playerSelection.getFirstSymbol());
+		assertEquals("O", playerSelection.getSecondSymbol());
 	}
 }

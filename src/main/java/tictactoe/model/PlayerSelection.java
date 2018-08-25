@@ -50,27 +50,37 @@ public class PlayerSelection
 
 	public Player getFirstPlayer()
 	{
-		return getPlayer(firstSymbol, firstPlayerType, true);
+		return getPlayer(firstPlayerType, true);
 	}
 
 	public Player getSecondPlayer()
 	{
-		return getPlayer(secondSymbol, secondPlayerType, false);
+		return getPlayer(secondPlayerType, false);
 	}
 
-	private Player getPlayer(String symbol, String playerType, boolean isFirstPlayer)
+	private Player getPlayer(String playerType, boolean isFirstPlayer)
 	{
-		if (symbol == null || playerType == null)
+		if (playerType == null)
 		{
 			return null;
 		}
 		else if (playerType.equals("1"))
 		{
-			return new Human(symbol, isFirstPlayer);
+			return new Human(isFirstPlayer);
 		}
 		else
 		{
-			return new Computer(symbol, isFirstPlayer);
+			return new Computer(isFirstPlayer);
 		}
+	}
+
+	public String getFirstSymbol()
+	{
+		return firstSymbol;
+	}
+
+	public String getSecondSymbol()
+	{
+		return secondSymbol;
 	}
 }

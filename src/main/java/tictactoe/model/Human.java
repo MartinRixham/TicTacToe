@@ -2,13 +2,10 @@ package tictactoe.model;
 
 public class Human implements Player
 {
-	private String symbol;
-
 	private boolean firstPlayer;
 
-	public Human(String symbol, boolean firstPlayer)
+	public Human(boolean firstPlayer)
 	{
-		this.symbol = symbol;
 		this.firstPlayer = firstPlayer;
 	}
 
@@ -20,7 +17,7 @@ public class Human implements Player
 
 			if (board.isAvailable(spot))
 			{
-				board.set(spot, symbol);
+				board.set(spot, firstPlayer);
 
 				return true;
 			}

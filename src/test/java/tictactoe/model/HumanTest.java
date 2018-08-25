@@ -11,8 +11,8 @@ public class HumanTest
 	@Test
 	public void validPick()
 	{
-		Board board = new Board();
-		Human human = new Human("X", true);
+		Board board = new Board("X", "O");
+		Human human = new Human(true);
 
 		boolean success = human.selectSpot("3", board);
 
@@ -25,8 +25,8 @@ public class HumanTest
 	@Test
 	public void inputTooSmall()
 	{
-		Board board = new Board();
-		Human human = new Human("X", false);
+		Board board = new Board("X", "O");
+		Human human = new Human(false);
 
 		boolean success = human.selectSpot("-1", board);
 
@@ -38,8 +38,8 @@ public class HumanTest
 	@Test
 	public void inputTooLarge()
 	{
-		Board board = new Board();
-		Human human = new Human("X", true);
+		Board board = new Board("X", "O");
+		Human human = new Human(true);
 
 		boolean success = human.selectSpot("10", board);
 
@@ -50,8 +50,8 @@ public class HumanTest
 	@Test
 	public void unknownInput()
 	{
-		Board board = new Board();
-		Human human = new Human("X", true);
+		Board board = new Board("X", "O");
+		Human human = new Human(true);
 
 		boolean success = human.selectSpot("wibble", board);
 
@@ -62,8 +62,8 @@ public class HumanTest
 	@Test
 	public void samePickTwice()
 	{
-		Board board = new Board();
-		Human human = new Human("X", true);
+		Board board = new Board("X", "O");
+		Human human = new Human(true);
 
 		human.selectSpot("4", board);
 		boolean success = human.selectSpot("4", board);

@@ -7,19 +7,49 @@ public class Board
 {
 	private String[] board = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
 
-	public boolean gameIsOver()
+	private int[][] winningLines =
+		new int[][]
+			{
+				new int[] {0, 1, 2},
+				new int[] {3, 4, 5},
+				new int[] {6, 7, 8},
+				new int[] {0, 3, 6},
+				new int[] {1, 4, 7},
+				new int[] {2, 5, 8},
+				new int[] {0, 4, 8},
+				new int[] {2, 4, 6},
+			};
+
+	private String firstSymbol;
+
+	private String secondSymbol;
+
+	public Board(String firstSymbol, String secondSymbol)
 	{
-		return board[0].equals(board[1]) && board[1].equals(board[2]) ||
-			board[3].equals(board[4]) && board[4].equals(board[5]) ||
-			board[6].equals(board[7]) && board[7].equals(board[8]) ||
-			board[0].equals(board[3]) && board[3].equals(board[6]) ||
-			board[1].equals(board[4]) && board[4].equals(board[7]) ||
-			board[2].equals(board[5]) && board[5].equals(board[8]) ||
-			board[0].equals(board[4]) && board[4].equals(board[8]) ||
-			board[2].equals(board[4]) && board[4].equals(board[6]);
+		this.firstSymbol = firstSymbol;
+		this.secondSymbol = secondSymbol;
 	}
 
-	public boolean isTied()
+	public boolean gameIsOver()
+	{
+		return isTied() || getWinner() > 0;
+	}
+
+	private int getWinner()
+	{
+		for (int[] line: winningLines)
+		{
+			if (board[line[0]].equals(board[line[1]]) &&
+				board[line[1]].equals(board[line[2]]))
+			{
+				return board[line[0]].equals(firstSymbol) ? 1 : 2;
+			}
+		}
+
+		return 0;
+	}
+
+	private boolean isTied()
 	{
 		for (int i = 0; i < board.length; i++)
 		{
@@ -32,9 +62,14 @@ public class Board
 		return true;
 	}
 
-	public void set(int spot, String symbol)
+	public void set(int spot, boolean firstPlayer)
 	{
-		board[spot] = symbol;
+		board[spot] = firstPlayer ? firstSymbol : secondSymbol;
+	}
+
+	public void reset(int spot)
+	{
+		board[spot] = Integer.toString(spot);
 	}
 
 	public List<Integer> getAvailableSpots()
@@ -65,9 +100,24 @@ public class Board
 	@Override
 	public String toString()
 	{
-		return " " + board[0] + " | " + board[1] + " | " + board[2] +
+		String output =
+			" " + board[0] + " | " + board[1] + " | " + board[2] +
 			"\n===+===+===\n" + " " + board[3] + " | " + board[4] + " | " + board[5] +
 			"\n===+===+===\n" + " " + board[6] + " | " + board[7] + " | " + board[8] +
 			"\n";
+
+		if (isTied())
+		{
+			output += "\nIt's a tie!";
+		}
+
+		int winner = getWinner();
+
+		if (winner > 0)
+		{
+			output += "\nPlayer " + winner + " wins!";
+		}
+
+		return output;
 	}
 }

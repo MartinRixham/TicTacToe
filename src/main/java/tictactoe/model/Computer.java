@@ -4,13 +4,10 @@ import java.util.List;
 
 public class Computer implements Player
 {
-	private String symbol;
-
 	private boolean firstPlayer;
 
-	public Computer(String symbol, boolean firstPlayer)
+	public Computer(boolean firstPlayer)
 	{
-		this.symbol = symbol;
 		this.firstPlayer = firstPlayer;
 	}
 
@@ -18,7 +15,7 @@ public class Computer implements Player
 	{
 		int spot = getNextMove(board);
 
-		board.set(spot, symbol);
+		board.set(spot, firstPlayer);
 
 		return spot;
 	}
@@ -36,13 +33,13 @@ public class Computer implements Player
 		for (int spot : availableSpots)
 		{
 			// Try to find a winning move.
-			if (winsAt(spot, symbol, board))
+			if (winsAt(spot, true, board))
 			{
 				return spot;
 			}
 
 			// Prevent an opponents winning move.
-			if (winsAt(spot, "X", board))
+			if (winsAt(spot, false, board))
 			{
 				return spot;
 			}
@@ -60,13 +57,13 @@ public class Computer implements Player
 		return availableSpots.get(0);
 	}
 
-	private boolean winsAt(int spot, String symbol, Board board)
+	private boolean winsAt(int spot, boolean firstPlayer, Board board)
 	{
 		boolean wins;
 
-		board.set(spot, symbol);
+		board.set(spot, firstPlayer);
 		wins = board.gameIsOver();
-		board.set(spot, Integer.toString(spot));
+		board.reset(spot);
 
 		return wins;
 	}

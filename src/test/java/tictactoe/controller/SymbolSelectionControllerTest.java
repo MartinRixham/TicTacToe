@@ -57,7 +57,14 @@ public class SymbolSelectionControllerTest
 
 		Result result = controller.handleInput("O");
 
-		assertEquals("", result.getOutput());
+		String expectedOutput =
+			"\n 0 | 1 | 2\n" +
+			"===+===+===\n" +
+			" 3 | 4 | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n";
+
+		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
 		assertTrue(result.getNextController() instanceof HumanController);
 	}
@@ -74,7 +81,14 @@ public class SymbolSelectionControllerTest
 
 		Result result = controller.handleInput("O");
 
-		assertEquals("", result.getOutput());
+		String expectedOutput =
+			"\n 0 | 1 | 2\n" +
+			"===+===+===\n" +
+			" 3 | 4 | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n";
+
+		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
 		assertTrue(result.getNextController() instanceof ComputerController);
 	}
