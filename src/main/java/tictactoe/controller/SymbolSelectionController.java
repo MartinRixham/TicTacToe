@@ -33,7 +33,7 @@ public class SymbolSelectionController implements Controller
 
 			if (firstPlayer != null && secondPlayer != null)
 			{
-				nextController = getGameplayController(firstPlayer, secondPlayer);
+				nextController = getPlayerController(firstPlayer, secondPlayer);
 			}
 			else
 			{
@@ -48,17 +48,27 @@ public class SymbolSelectionController implements Controller
 		return new Result("", nextController, false);
 	}
 
-	private Controller getGameplayController(Player firstPlayer, Player secondPlayer)
+	private Controller getPlayerController(Player firstPlayer, Player secondPlayer)
 	{
 		Board board = new Board();
+		PlayerController playerController = getController(board, firstPlayer);
+		PlayerController opponentController = getController(board, secondPlayer);
 
-		if (firstPlayer instanceof Human)
+		playerController.setOpponentController(opponentController);
+		opponentController.setOpponentController(playerController);
+
+		return playerController;
+	}
+
+	private PlayerController getController(Board board, Player player)
+	{
+		if (player instanceof Human)
 		{
-			return new HumanController(board, (Human) firstPlayer);
+			return new HumanController(board, (Human) player);
 		}
 		else
 		{
-			return new ComputerController(board, (Computer) firstPlayer);
+			return new ComputerController(board, (Computer) player);
 		}
 	}
 }

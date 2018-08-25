@@ -14,9 +14,9 @@ public class ComputerControllerTest
 	{
 		Board board = new Board();
 		Computer computer = new Computer("X", "O");
-		Controller opponentController = new ComputerController(board, computer);
+		PlayerController opponentController = new ComputerController(board, computer);
 
-		ComputerController controller = new ComputerController(board, computer);
+		PlayerController controller = new ComputerController(board, computer);
 		controller.setOpponentController(opponentController);
 
 		Result result = controller.handleInput("");

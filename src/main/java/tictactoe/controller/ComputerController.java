@@ -3,7 +3,7 @@ package tictactoe.controller;
 import tictactoe.model.Board;
 import tictactoe.model.Computer;
 
-public class ComputerController implements Controller
+public class ComputerController implements PlayerController
 {
 	private Board board;
 
@@ -15,11 +15,6 @@ public class ComputerController implements Controller
 	{
 		this.board = board;
 		this.computer = computer;
-	}
-
-	public void setOpponentController(Controller opponentController)
-	{
-		this.opponentController = opponentController;
 	}
 
 	@Override
@@ -37,5 +32,11 @@ public class ComputerController implements Controller
 			"Player 1 picks spot: " + spot + "\n" + board;
 
 		return new Result(output, opponentController, false);
+	}
+
+	@Override
+	public void setOpponentController(PlayerController opponentController)
+	{
+		this.opponentController = opponentController;
 	}
 }

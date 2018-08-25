@@ -2,6 +2,7 @@ package tictactoe.controller;
 
 import org.junit.Test;
 import tictactoe.model.Board;
+import tictactoe.model.Computer;
 import tictactoe.model.Human;
 
 import static org.junit.Assert.assertEquals;
@@ -26,9 +27,12 @@ public class HumanControllerTest
 	public void validPick()
 	{
 		Board board = new Board();
+		Computer computer = new Computer("X", "O");
+		PlayerController opponentController = new ComputerController(board, computer);
 		Human human = new Human("X");
 
-		Controller controller = new HumanController(board, human);
+		PlayerController controller = new HumanController(board, human);
+		controller.setOpponentController(opponentController);
 
 		Result result = controller.handleInput("3");
 
@@ -42,19 +46,24 @@ public class HumanControllerTest
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
+		assertEquals(opponentController, result.getNextController());
 	}
 
 	@Test
 	public void invalidPick()
 	{
 		Board board = new Board();
+		Computer computer = new Computer("X", "O");
+		PlayerController opponentController = new ComputerController(board, computer);
 		Human human = new Human("X");
 
-		Controller controller = new HumanController(board, human);
+		PlayerController controller = new HumanController(board, human);
+		controller.setOpponentController(opponentController);
 
 		Result result = controller.handleInput("10");
 
 		assertEquals("", result.getOutput());
 		assertFalse(result.gameIsOver());
+		assertEquals(controller, result.getNextController());
 	}
 }

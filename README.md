@@ -5,7 +5,7 @@ A fun game.
 mvn package
 
 ### Run
-cd target/classes; java tictactoe.Game; cd ../..
+java -jar target/tictactoe.jar
 
 ### Testing
 This project was tested on Fedora and hopefully will work on your machine.
