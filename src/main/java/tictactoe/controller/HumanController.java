@@ -23,15 +23,13 @@ public class HumanController implements PlayerController
 		String availableSpots = board.getAvailableSpots().toString();
 		String spotList = availableSpots.substring(1, availableSpots.length() - 1);
 
-		return "Pick one of the available spots " + spotList + ":";
+		return "Pick one of the available spots " + spotList + ":\n";
 	}
 
 	@Override
 	public Result handleInput(String input)
 	{
-		boolean success = human.selectSpot(input, board);
-
-		if (success)
+		if (human.selectSpot(input, board))
 		{
 			int number = human.isFirstPlayer() ? 1 : 2;
 

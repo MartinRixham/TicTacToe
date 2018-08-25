@@ -2,9 +2,12 @@ package tictactoe;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import tictactoe.controller.ComputerController;
 import tictactoe.controller.Controller;
 import tictactoe.controller.HumanController;
+import tictactoe.controller.PlayerController;
 import tictactoe.model.Board;
+import tictactoe.model.Computer;
 import tictactoe.model.Human;
 
 import java.io.ByteArrayInputStream;
@@ -28,7 +31,8 @@ public class GameTest
 
 		System.setOut(out);
 
-		InputStream in = new ByteArrayInputStream("1\nX\n2\nO\n1\n2\n3\n".getBytes());
+		String input = "1\nX\n2\nO\n1\n2\n3\n1\nX\n2\nO\n1\n2\n3\n";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 
 		Game.main(null);
@@ -100,7 +104,7 @@ public class GameTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Scanner in = new Scanner(new ByteArrayInputStream("2\n".getBytes()));
+		Scanner in = new Scanner(new ByteArrayInputStream("2\n3\n4\n".getBytes()));
 		Human human = new Human("X", true);
 
 		Board board = new Board();
@@ -128,16 +132,38 @@ public class GameTest
 	{
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(stream);
-		Scanner in = new Scanner(new ByteArrayInputStream("1\n2\n3\n".getBytes()));
-		Controller controller = FakeController.validInput();
+		Scanner in = new Scanner(new ByteArrayInputStream("2\n3\n4\n".getBytes()));
+		Human human = new Human("X", false);
+		Computer computer = new Computer("O", true);
+
+		Board board = new Board();
+		board.set(0, "X");
+		board.set(1, "X");
+
+		PlayerController opponentController = new HumanController(board, human);
+		PlayerController controller = new ComputerController(board, computer);
+
+		opponentController.setOpponentController(controller);
+		controller.setOpponentController(opponentController);
 
 		new Game(in, out, controller).play();
 
 		String expectedOutput =
-			"Write some input:\n" +
-			"Input was valid.\n" +
-			"Write some input:\n" +
-			"Game over!\n";
+			"Player 1 picks spot: 4\n" +
+			" X | X | 2\n" +
+			"===+===+===\n" +
+			" 3 | O | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n" +
+			"\n" +
+			"Pick one of the available spots 2, 3, 5, 6, 7, 8:\n" +
+			"Player 2 picks spot: 2\n" +
+			" X | X | X\n" +
+			"===+===+===\n" +
+			" 3 | O | 5\n" +
+			"===+===+===\n" +
+			" 6 | 7 | 8\n" +
+			"\n";
 
 		assertEquals(expectedOutput, stream.toString());
 	}

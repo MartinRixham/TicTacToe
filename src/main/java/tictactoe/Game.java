@@ -38,7 +38,7 @@ public final class Game
 	{
 		while (true)
 		{
-			out.println(controller.prompt());
+			out.print(controller.prompt());
 			String input = "";
 
 			if (controller.requiresInput())

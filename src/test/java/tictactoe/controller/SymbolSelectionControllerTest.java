@@ -78,4 +78,31 @@ public class SymbolSelectionControllerTest
 		assertFalse(result.gameIsOver());
 		assertTrue(result.getNextController() instanceof ComputerController);
 	}
+
+	@Test
+	public void controllersAlternateTurns()
+	{
+		PlayerSelection playerSelection = new PlayerSelection();
+		playerSelection.selectPlayerType("2");
+		playerSelection.selectPlayerSymbol("X");
+		playerSelection.selectPlayerType("1");
+
+		Controller controller = new SymbolSelectionController(playerSelection);
+
+		Result result = controller.handleInput("O");
+
+		controller = result.getNextController();
+
+		assertTrue(controller instanceof ComputerController);
+
+		result = controller.handleInput("");
+		controller = result.getNextController();
+
+		assertTrue(controller instanceof HumanController);
+
+		result = controller.handleInput("3");
+		controller = result.getNextController();
+
+		assertTrue(controller instanceof ComputerController);
+	}
 }
