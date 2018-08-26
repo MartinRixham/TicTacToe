@@ -16,7 +16,7 @@ public class PlayerTypeSelectionController implements Controller
 	{
 		int number = playerSelection.getFirstPlayer() == null ? 1 : 2;
 
-		return "Player " + number + "\n1) human\n2) computer\nselect player:";
+		return "Player " + number + "\n1) human\n2) computer\nselect player: ";
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class SymbolSelectionControllerTest
 		Controller controller = new SymbolSelectionController(playerSelection);
 
 		assertTrue(controller.requiresInput());
-		assertEquals("select symbol:", controller.prompt());
+		assertEquals("select symbol: ", controller.prompt());
 	}
 
 	@Test

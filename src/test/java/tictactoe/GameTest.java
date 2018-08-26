@@ -36,15 +36,15 @@ public class GameTest
 		Game.main(null);
 
 		String expectedOutput =
-			"Player 1\n1) human\n2) computer\nselect player:\nselect symbol:\n" +
-			"Player 2\n1) human\n2) computer\nselect player:\nselect symbol:\n" +
+			"Player 1\n1) human\n2) computer\nselect player: \nselect symbol: \n" +
+			"Player 2\n1) human\n2) computer\nselect player: \nselect symbol: \n" +
 			" 1 | 2 | 3\n" +
 			"===+===+===\n" +
 			" 4 | 5 | 6\n" +
 			"===+===+===\n" +
 			" 7 | 8 | 9\n" +
 			"\n" +
-			"Pick one of the available spots 1, 2, 3, 4, 5, 6, 7, 8, 9:\n" +
+			"Pick one of the available spots 1, 2, 3, 4, 5, 6, 7, 8, 9: " +
 			"Player 1 picks spot: 2\n" +
 			" 1 | X | 3\n" +
 			"===+===+===\n" +
@@ -59,7 +59,7 @@ public class GameTest
 			"===+===+===\n" +
 			" 7 | 8 | 9\n" +
 			"\n" +
-			"Pick one of the available spots 1, 3, 4, 6, 7, 8, 9:\n" +
+			"Pick one of the available spots 1, 3, 4, 6, 7, 8, 9: " +
 			"Player 1 picks spot: 3\n" +
 			" 1 | X | X\n" +
 			"===+===+===\n" +
@@ -74,7 +74,7 @@ public class GameTest
 			"===+===+===\n" +
 			" 7 | 8 | 9\n" +
 			"\n" +
-			"Pick one of the available spots 4, 6, 7, 8, 9:\n" +
+			"Pick one of the available spots 4, 6, 7, 8, 9: " +
 			"Player 1 picks spot: 4\n" +
 			" O | X | X\n" +
 			"===+===+===\n" +
@@ -114,7 +114,7 @@ public class GameTest
 		new Game(in, out, controller).play();
 
 		String expectedOutput =
-			"Pick one of the available spots 3, 4, 5, 6, 7, 8, 9:\n" +
+			"Pick one of the available spots 3, 4, 5, 6, 7, 8, 9: " +
 			"Player 1 picks spot: 3\n" +
 			" X | X | X\n" +
 			"===+===+===\n" +
@@ -155,7 +155,7 @@ public class GameTest
 			"===+===+===\n" +
 			" 7 | 8 | 9\n" +
 			"\n" +
-			"Pick one of the available spots 3, 4, 6, 7, 8, 9:\n" +
+			"Pick one of the available spots 3, 4, 6, 7, 8, 9: " +
 			"Player 2 picks spot: 3\n" +
 			" X | X | X\n" +
 			"===+===+===\n" +

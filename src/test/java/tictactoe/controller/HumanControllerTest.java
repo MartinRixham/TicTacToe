@@ -21,7 +21,7 @@ public class HumanControllerTest
 
 		assertTrue(controller.requiresInput());
 		assertEquals(
-			"Pick one of the available spots 1, 2, 3, 4, 5, 6, 7, 8, 9:\n",
+			"Pick one of the available spots 1, 2, 3, 4, 5, 6, 7, 8, 9: ",
 			controller.prompt());
 	}
 

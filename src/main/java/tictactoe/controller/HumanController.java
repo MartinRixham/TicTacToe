@@ -23,7 +23,7 @@ public class HumanController implements PlayerController
 		String availableSpots = board.getAvailableSpots().toString();
 		String spotList = availableSpots.substring(1, availableSpots.length() - 1);
 
-		return "Pick one of the available spots " + spotList + ":\n";
+		return "Pick one of the available spots " + spotList + ": ";
 	}
 
 	@Override

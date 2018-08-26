@@ -18,7 +18,7 @@ public class SymbolSelectionController implements Controller
 	@Override
 	public String prompt()
 	{
-		return "select symbol:";
+		return "select symbol: ";
 	}
 
 	@Override

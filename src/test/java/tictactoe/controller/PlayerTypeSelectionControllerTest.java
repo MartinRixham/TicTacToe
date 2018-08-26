@@ -17,7 +17,7 @@ public class PlayerTypeSelectionControllerTest
 
 		assertTrue(controller.requiresInput());
 		assertEquals(
-			"Player 1\n1) human\n2) computer\nselect player:",
+			"Player 1\n1) human\n2) computer\nselect player: ",
 			controller.prompt());
 	}
 
@@ -32,7 +32,7 @@ public class PlayerTypeSelectionControllerTest
 
 		assertTrue(controller.requiresInput());
 		assertEquals(
-			"Player 2\n1) human\n2) computer\nselect player:",
+			"Player 2\n1) human\n2) computer\nselect player: ",
 			controller.prompt());
 	}
 

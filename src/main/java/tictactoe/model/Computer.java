@@ -13,14 +13,14 @@ public class Computer implements Player
 
 	public int selectSpot(Board board)
 	{
-		int spot = getNextMove(board, firstPlayer).getSpot();
+		int spot = getBestSpot(board, firstPlayer).getSpot();
 
 		board.set(spot, firstPlayer);
 
 		return spot;
 	}
 
-	private SpotScore getNextMove(Board board, boolean firstPlayer)
+	private SpotScore getBestSpot(Board board, boolean firstPlayer)
 	{
 		if (board.isAvailable(5))
 		{
@@ -46,7 +46,7 @@ public class Computer implements Player
 			}
 			else
 			{
-				score = getNextMove(board, !firstPlayer).negateScore(spot);
+				score = getBestSpot(board, !firstPlayer).negateScore(spot);
 			}
 
 			if (score.isGreaterThan(bestScore))
