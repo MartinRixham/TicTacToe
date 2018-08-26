@@ -22,7 +22,6 @@ public class Computer implements Player
 
 	private int getNextMove(Board board)
 	{
-		// First go in the middle.
 		if (board.isAvailable(5))
 		{
 			return 5;
@@ -32,20 +31,17 @@ public class Computer implements Player
 
 		for (int spot : availableSpots)
 		{
-			// Try to find a winning move.
-			if (winsAt(spot, true, board))
+			if (winsAt(spot, firstPlayer, board))
 			{
 				return spot;
 			}
 
-			// Prevent an opponents winning move.
-			if (winsAt(spot, false, board))
+			if (winsAt(spot, !firstPlayer, board))
 			{
 				return spot;
 			}
 		}
 
-		// Choose a corner if possible.
 		for (int spot: availableSpots)
 		{
 			if (spot % 2 == 1)
