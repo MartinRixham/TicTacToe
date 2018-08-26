@@ -223,4 +223,32 @@ public class BoardTest
 		assertEquals(0, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
+
+	@Test
+	public void winOnLastMove()
+	{
+		Board board = new Board("X", "O");
+		board.set(1, true);
+		board.set(2, false);
+		board.set(3, false);
+		board.set(4, true);
+		board.set(5, true);
+		board.set(6, false);
+		board.set(7, false);
+		board.set(8, false);
+		board.set(9, true);
+
+		String expected =
+			" X | O | O\n" +
+			"===+===+===\n" +
+			" X | X | O\n" +
+			"===+===+===\n" +
+			" O | O | X\n\n" +
+			"Player 1 wins!";
+
+		assertEquals(expected, board.toString());
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
+		assertTrue(board.gameIsOver());
+	}
 }

@@ -60,7 +60,7 @@ public class Board
 			}
 		}
 
-		return true;
+		return getWinner() == 0;
 	}
 
 	public void set(int spot, boolean firstPlayer)
@@ -109,16 +109,15 @@ public class Board
 			" " + getSymbol(7) + " | " + getSymbol(8) + " | " + getSymbol(9) +
 			"\n";
 
-		if (isTied())
-		{
-			output += "\nIt's a tie!";
-		}
-
 		int winner = getWinner();
 
 		if (winner > 0)
 		{
 			output += "\nPlayer " + winner + " wins!";
+		}
+		else if (isTied())
+		{
+			output += "\nIt's a tie!";
 		}
 
 		return output;
