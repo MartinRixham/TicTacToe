@@ -21,7 +21,7 @@ public class HumanControllerTest
 
 		assertTrue(controller.requiresInput());
 		assertEquals(
-			"Pick one of the available spots 0, 1, 2, 3, 4, 5, 6, 7, 8:\n",
+			"Pick one of the available spots 1, 2, 3, 4, 5, 6, 7, 8, 9:\n",
 			controller.prompt());
 	}
 
@@ -36,15 +36,15 @@ public class HumanControllerTest
 		PlayerController controller = new HumanController(board, human);
 		controller.setOpponentController(opponentController);
 
-		Result result = controller.handleInput("3");
+		Result result = controller.handleInput("4");
 
 		String expectedOutput =
-			"Player 1 picks spot: 3\n" +
-			" 0 | 1 | 2\n" +
+			"Player 1 picks spot: 4\n" +
+			" 1 | 2 | 3\n" +
 			"===+===+===\n" +
-			" X | 4 | 5\n" +
+			" X | 5 | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 7 | 8 | 9\n";
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
@@ -59,15 +59,15 @@ public class HumanControllerTest
 
 		PlayerController controller = new HumanController(board, human);
 
-		Result result = controller.handleInput("3");
+		Result result = controller.handleInput("4");
 
 		String expectedOutput =
-			"Player 2 picks spot: 3\n" +
-			" 0 | 1 | 2\n" +
+			"Player 2 picks spot: 4\n" +
+			" 1 | 2 | 3\n" +
 			"===+===+===\n" +
-			" O | 4 | 5\n" +
+			" O | 5 | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 7 | 8 | 9\n";
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
@@ -95,8 +95,8 @@ public class HumanControllerTest
 	public void gameOver()
 	{
 		Board board = new Board("X", "O");
-		board.set(0, true);
 		board.set(1, true);
+		board.set(2, true);
 
 		Computer computer = new Computer(false);
 		PlayerController opponentController = new ComputerController(board, computer);
@@ -105,15 +105,15 @@ public class HumanControllerTest
 		PlayerController controller = new HumanController(board, human);
 		controller.setOpponentController(opponentController);
 
-		Result result = controller.handleInput("2");
+		Result result = controller.handleInput("3");
 
 		String expectedOutput =
-			"Player 1 picks spot: 2\n" +
+			"Player 1 picks spot: 3\n" +
 			" X | X | X\n" +
 			"===+===+===\n" +
-			" 3 | 4 | 5\n" +
+			" 4 | 5 | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n\n" +
+			" 7 | 8 | 9\n\n" +
 			"Player 1 wins!";
 
 		assertEquals(expectedOutput, result.getOutput());

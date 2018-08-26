@@ -58,11 +58,11 @@ public class SymbolSelectionControllerTest
 		Result result = controller.handleInput("O");
 
 		String expectedOutput =
-			"\n 0 | 1 | 2\n" +
+			"\n 1 | 2 | 3\n" +
 			"===+===+===\n" +
-			" 3 | 4 | 5\n" +
+			" 4 | 5 | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 7 | 8 | 9\n";
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
@@ -82,11 +82,11 @@ public class SymbolSelectionControllerTest
 		Result result = controller.handleInput("O");
 
 		String expectedOutput =
-			"\n 0 | 1 | 2\n" +
+			"\n 1 | 2 | 3\n" +
 			"===+===+===\n" +
-			" 3 | 4 | 5\n" +
+			" 4 | 5 | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 7 | 8 | 9\n";
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());

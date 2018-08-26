@@ -16,7 +16,7 @@ public class ComputerTest
 
 		int selectedSquare = computer.selectSpot(board);
 
-		assertEquals(4, selectedSquare);
+		assertEquals(5, selectedSquare);
 		assertTrue(computer.isFirstPlayer());
 	}
 
@@ -24,14 +24,14 @@ public class ComputerTest
 	public void preventOpponentFromWinning()
 	{
 		Board board = new Board("X", "O");
-		board.set(3, true);
 		board.set(4, true);
+		board.set(5, true);
 
 		Computer computer = new Computer(false);
 
 		int selectedSquare = computer.selectSpot(board);
 
-		assertEquals(5, selectedSquare);
+		assertEquals(6, selectedSquare);
 		assertFalse(computer.isFirstPlayer());
 	}
 
@@ -39,27 +39,27 @@ public class ComputerTest
 	public void selectWinningMove()
 	{
 		Board board = new Board("X", "O");
-		board.set(0, true);
-		board.set(4, true);
+		board.set(1, true);
+		board.set(5, true);
 
 		Computer computer = new Computer(true);
 
 		int selectedSquare = computer.selectSpot(board);
 
-		assertEquals(8, selectedSquare);
+		assertEquals(9, selectedSquare);
 	}
 
 	@Test
 	public void selectCornerIfPossible()
 	{
 		Board board = new Board("X", "O");
-		board.set(0, false);
-		board.set(4, true);
+		board.set(1, false);
+		board.set(5, true);
 
 		Computer computer = new Computer(true);
 
 		int selectedSquare = computer.selectSpot(board);
 
-		assertEquals(0, selectedSquare % 2);
+		assertEquals(1, selectedSquare % 2);
 	}
 }

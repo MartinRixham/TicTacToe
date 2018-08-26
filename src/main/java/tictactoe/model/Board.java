@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Board
 {
-	private String[] board = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+	private String[] board = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 	private int[][] winningLines =
 		new int[][]
@@ -51,7 +51,7 @@ public class Board
 
 	private boolean isTied()
 	{
-		for (int i = 0; i < board.length; i++)
+		for (int i = 1; i <= board.length; i++)
 		{
 			if (isAvailable(i))
 			{
@@ -64,19 +64,19 @@ public class Board
 
 	public void set(int spot, boolean firstPlayer)
 	{
-		board[spot] = firstPlayer ? firstSymbol : secondSymbol;
+		board[spot - 1] = firstPlayer ? firstSymbol : secondSymbol;
 	}
 
 	public void reset(int spot)
 	{
-		board[spot] = Integer.toString(spot);
+		board[spot - 1] = Integer.toString(spot);
 	}
 
 	public List<Integer> getAvailableSpots()
 	{
 		List<Integer> availableSpots = new ArrayList<>();
 
-		for (int i = 0; i < board.length; i++)
+		for (int i = 1; i <= board.length; i++)
 		{
 			if (isAvailable(i))
 			{
@@ -89,12 +89,12 @@ public class Board
 
 	public boolean isAvailable(int spot)
 	{
-		if (spot < 0 || spot >= board.length)
+		if (spot < 1 || spot > board.length)
 		{
 			return false;
 		}
 
-		return board[spot].equals(Integer.toString(spot));
+		return board[spot - 1].equals(Integer.toString(spot));
 	}
 
 	@Override

@@ -23,9 +23,9 @@ public class Computer implements Player
 	private int getNextMove(Board board)
 	{
 		// First go in the middle.
-		if (board.isAvailable(4))
+		if (board.isAvailable(5))
 		{
-			return 4;
+			return 5;
 		}
 
 		List<Integer> availableSpots = board.getAvailableSpots();
@@ -48,7 +48,7 @@ public class Computer implements Player
 		// Choose a corner if possible.
 		for (int spot: availableSpots)
 		{
-			if (spot % 2 == 0)
+			if (spot % 2 == 1)
 			{
 				return spot;
 			}

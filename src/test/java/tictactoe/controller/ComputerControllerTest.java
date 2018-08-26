@@ -23,12 +23,12 @@ public class ComputerControllerTest
 		Result result = controller.handleInput("");
 
 		String expectedOutput =
-			"Player 1 picks spot: 4\n" +
-			" 0 | 1 | 2\n" +
+			"Player 1 picks spot: 5\n" +
+			" 1 | 2 | 3\n" +
 			"===+===+===\n" +
-			" 3 | X | 5\n" +
+			" 4 | X | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 7 | 8 | 9\n";
 
 		assertFalse(controller.requiresInput());
 		assertEquals(expectedOutput, result.getOutput());
@@ -48,12 +48,12 @@ public class ComputerControllerTest
 		Result result = controller.handleInput("");
 
 		String expectedOutput =
-			"Player 2 picks spot: 4\n" +
-			" 0 | 1 | 2\n" +
+			"Player 2 picks spot: 5\n" +
+			" 1 | 2 | 3\n" +
 			"===+===+===\n" +
-			" 3 | O | 5\n" +
+			" 4 | O | 6\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n";
+			" 7 | 8 | 9\n";
 
 		assertEquals(expectedOutput, result.getOutput());
 		assertFalse(result.gameIsOver());
@@ -63,8 +63,8 @@ public class ComputerControllerTest
 	public void gameOver()
 	{
 		Board board = new Board("X", "O");
-		board.set(3, true);
-		board.set(5, true);
+		board.set(4, true);
+		board.set(6, true);
 
 		Computer computer = new Computer(true);
 		PlayerController opponentController = new ComputerController(board, computer);
@@ -75,12 +75,12 @@ public class ComputerControllerTest
 		Result result = controller.handleInput("");
 
 		String expectedOutput =
-			"Player 1 picks spot: 4\n" +
-			" 0 | 1 | 2\n" +
+			"Player 1 picks spot: 5\n" +
+			" 1 | 2 | 3\n" +
 			"===+===+===\n" +
 			" X | X | X\n" +
 			"===+===+===\n" +
-			" 6 | 7 | 8\n\n" +
+			" 7 | 8 | 9\n\n" +
 			"Player 1 wins!";
 
 		assertEquals(expectedOutput, result.getOutput());
