@@ -35,7 +35,7 @@ public class Board
 		return isTied() || getWinner() > 0;
 	}
 
-	private int getWinner()
+	public int getWinner()
 	{
 		for (int[] line: winningLines)
 		{
@@ -49,7 +49,7 @@ public class Board
 		return 0;
 	}
 
-	private boolean isTied()
+	public boolean isTied()
 	{
 		for (int i = 1; i <= board.length; i++)
 		{

@@ -24,8 +24,9 @@ public class ComputerTest
 	public void preventOpponentFromWinning()
 	{
 		Board board = new Board("X", "O");
-		board.set(4, true);
 		board.set(5, true);
+		board.set(3, false);
+		board.set(4, true);
 
 		Computer computer = new Computer(false);
 
@@ -50,16 +51,31 @@ public class ComputerTest
 	}
 
 	@Test
-	public void selectCornerIfPossible()
+	public void selectEdgeAfterMiddle()
 	{
 		Board board = new Board("X", "O");
-		board.set(1, false);
 		board.set(5, true);
+		board.set(1, false);
 
 		Computer computer = new Computer(true);
 
 		int selectedSquare = computer.selectSpot(board);
 
-		assertEquals(1, selectedSquare % 2);
+		assertEquals(2, selectedSquare);
+	}
+
+	@Test
+	public void avoidCornerIfOpponentHasSelectedTwoCorners()
+	{
+		Board board = new Board("X", "O");
+		board.set(7, false);
+		board.set(5, true);
+		board.set(3, false);
+
+		Computer computer = new Computer(true);
+
+		int selectedSquare = computer.selectSpot(board);
+
+		assertEquals(2, selectedSquare);
 	}
 }

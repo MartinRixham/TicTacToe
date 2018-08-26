@@ -21,6 +21,8 @@ public class BoardTest
 			" 7 | 8 | 9\n";
 
 		assertEquals(expectedBoard, board.toString());
+		assertFalse(board.isTied());
+		assertEquals(0, board.getWinner());
 		assertFalse(board.gameIsOver());
 	}
 
@@ -38,6 +40,8 @@ public class BoardTest
 			" 7 | 8 | 9\n";
 
 		assertEquals(expectedBoard, board.toString());
+		assertFalse(board.isTied());
+		assertEquals(0, board.getWinner());
 		assertFalse(board.gameIsOver());
 	}
 
@@ -56,6 +60,8 @@ public class BoardTest
 			" 7 | 8 | 9\n";
 
 		assertEquals(expectedBoard, board.toString());
+		assertFalse(board.isTied());
+		assertEquals(0, board.getWinner());
 		assertFalse(board.gameIsOver());
 	}
 
@@ -76,6 +82,8 @@ public class BoardTest
 			"Player 1 wins!";
 
 		assertEquals(expected, board.toString());
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -87,6 +95,8 @@ public class BoardTest
 		board.set(5, true);
 		board.set(6, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -98,6 +108,8 @@ public class BoardTest
 		board.set(8, true);
 		board.set(9, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -109,6 +121,8 @@ public class BoardTest
 		board.set(4, true);
 		board.set(7, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -120,6 +134,8 @@ public class BoardTest
 		board.set(5, true);
 		board.set(8, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -131,6 +147,8 @@ public class BoardTest
 		board.set(6, true);
 		board.set(9, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -142,6 +160,8 @@ public class BoardTest
 		board.set(5, true);
 		board.set(3, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 
@@ -153,7 +173,27 @@ public class BoardTest
 		board.set(5, true);
 		board.set(9, true);
 
+		assertFalse(board.isTied());
+		assertEquals(1, board.getWinner());
 		assertTrue(board.gameIsOver());
+	}
+
+	@Test
+	public void eightFilledSpotsIsNotATie()
+	{
+		Board board = new Board("X", "O");
+		board.set(1, false);
+		board.set(2, false);
+		board.set(3, true);
+		board.set(4, true);
+		board.set(5, true);
+		board.set(6, false);
+		board.set(7, false);
+		board.set(8, false);
+
+		assertFalse(board.isTied());
+		assertEquals(0, board.getWinner());
+		assertFalse(board.gameIsOver());
 	}
 
 	@Test
@@ -179,6 +219,8 @@ public class BoardTest
 			"It's a tie!";
 
 		assertEquals(expected, board.toString());
+		assertTrue(board.isTied());
+		assertEquals(0, board.getWinner());
 		assertTrue(board.gameIsOver());
 	}
 }

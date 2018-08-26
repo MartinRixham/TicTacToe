@@ -13,55 +13,51 @@ public class Computer implements Player
 
 	public int selectSpot(Board board)
 	{
-		int spot = getNextMove(board);
+		int spot = getNextMove(board, firstPlayer).getSpot();
 
 		board.set(spot, firstPlayer);
 
 		return spot;
 	}
 
-	private int getNextMove(Board board)
+	private SpotScore getNextMove(Board board, boolean firstPlayer)
 	{
 		if (board.isAvailable(5))
 		{
-			return 5;
+			return new SpotScore(5, Integer.MAX_VALUE, 0);
 		}
 
+		SpotScore bestScore = new SpotScore(0, Integer.MIN_VALUE, 0);
 		List<Integer> availableSpots = board.getAvailableSpots();
-
-		for (int spot : availableSpots)
-		{
-			if (winsAt(spot, firstPlayer, board))
-			{
-				return spot;
-			}
-
-			if (winsAt(spot, !firstPlayer, board))
-			{
-				return spot;
-			}
-		}
 
 		for (int spot: availableSpots)
 		{
-			if (spot % 2 == 1)
+			board.set(spot, firstPlayer);
+
+			SpotScore score;
+
+			if (board.getWinner() > 0)
 			{
-				return spot;
+				score = new SpotScore(spot, 1, 0);
 			}
+			else if (board.isTied())
+			{
+				score = new SpotScore(spot, 0, 0);
+			}
+			else
+			{
+				score = getNextMove(board, !firstPlayer).negateScore(spot);
+			}
+
+			if (score.isGreaterThan(bestScore))
+			{
+				bestScore = score;
+			}
+
+			board.reset(spot);
 		}
 
-		return availableSpots.get(0);
-	}
-
-	private boolean winsAt(int spot, boolean firstPlayer, Board board)
-	{
-		boolean wins;
-
-		board.set(spot, firstPlayer);
-		wins = board.gameIsOver();
-		board.reset(spot);
-
-		return wins;
+		return bestScore.incrementDepth();
 	}
 
 	@Override
