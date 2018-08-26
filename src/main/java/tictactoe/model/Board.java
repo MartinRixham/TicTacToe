@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Board
 {
-	private String[] board = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+	private int[] board = new int[9];
 
 	private int[][] winningLines =
 		new int[][]
@@ -39,10 +39,11 @@ public class Board
 	{
 		for (int[] line: winningLines)
 		{
-			if (board[line[0]].equals(board[line[1]]) &&
-				board[line[1]].equals(board[line[2]]))
+			if (board[line[0]] > 0 &&
+				board[line[0]] == board[line[1]] &&
+				board[line[1]] == board[line[2]])
 			{
-				return board[line[0]].equals(firstSymbol) ? 1 : 2;
+				return board[line[0]];
 			}
 		}
 
@@ -64,12 +65,12 @@ public class Board
 
 	public void set(int spot, boolean firstPlayer)
 	{
-		board[spot - 1] = firstPlayer ? firstSymbol : secondSymbol;
+		board[spot - 1] = firstPlayer ? 1 : 2;
 	}
 
 	public void reset(int spot)
 	{
-		board[spot - 1] = Integer.toString(spot);
+		board[spot - 1] = 0;
 	}
 
 	public List<Integer> getAvailableSpots()
@@ -94,16 +95,18 @@ public class Board
 			return false;
 		}
 
-		return board[spot - 1].equals(Integer.toString(spot));
+		return board[spot - 1] == 0;
 	}
 
 	@Override
 	public String toString()
 	{
 		String output =
-			" " + board[0] + " | " + board[1] + " | " + board[2] +
-			"\n===+===+===\n" + " " + board[3] + " | " + board[4] + " | " + board[5] +
-			"\n===+===+===\n" + " " + board[6] + " | " + board[7] + " | " + board[8] +
+			" " + getSymbol(1) + " | " + getSymbol(2) + " | " + getSymbol(3) +
+			"\n===+===+===\n" +
+			" " + getSymbol(4) + " | " + getSymbol(5) + " | " + getSymbol(6) +
+			"\n===+===+===\n" +
+			" " + getSymbol(7) + " | " + getSymbol(8) + " | " + getSymbol(9) +
 			"\n";
 
 		if (isTied())
@@ -119,5 +122,21 @@ public class Board
 		}
 
 		return output;
+	}
+
+	private String getSymbol(int spot)
+	{
+		if (board[spot - 1] == 1)
+		{
+			return firstSymbol;
+		}
+		else if (board[spot - 1] == 2)
+		{
+			return secondSymbol;
+		}
+		else
+		{
+			return "" + spot;
+		}
 	}
 }
