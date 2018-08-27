@@ -21,7 +21,8 @@ public final class Game
 		Scanner in = new Scanner(System.in);
 		PrintStream out = System.out;
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller initialController = new PlayerTypeSelectionController(playerSelection);
+		Controller initialController =
+			new PlayerTypeSelectionController(playerSelection, "1");
 		Game game = new Game(in, out, initialController);
 
 		game.play();

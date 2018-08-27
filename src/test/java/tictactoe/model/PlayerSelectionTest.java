@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerSelectionTest
@@ -79,7 +78,7 @@ public class PlayerSelectionTest
 		Player player = playerSelection.getFirstPlayer();
 
 		assertTrue(player instanceof Human);
-		assertNull(playerSelection.getSecondPlayer());
+		assertFalse(playerSelection.hasPlayers());
 		assertEquals("X", playerSelection.getFirstSymbol());
 	}
 
@@ -93,7 +92,7 @@ public class PlayerSelectionTest
 		Player player = playerSelection.getFirstPlayer();
 
 		assertTrue(player instanceof Computer);
-		assertNull(playerSelection.getSecondPlayer());
+		assertFalse(playerSelection.hasPlayers());
 		assertEquals("O", playerSelection.getFirstSymbol());
 	}
 

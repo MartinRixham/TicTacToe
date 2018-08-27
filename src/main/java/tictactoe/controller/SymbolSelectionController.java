@@ -26,24 +26,21 @@ public class SymbolSelectionController implements Controller
 	{
 		if (playerSelection.selectPlayerSymbol(input))
 		{
-			Player firstPlayer = playerSelection.getFirstPlayer();
-			Player secondPlayer = playerSelection.getSecondPlayer();
-
-			if (firstPlayer != null && secondPlayer != null)
+			if (playerSelection.hasPlayers())
 			{
 				String firstSymbol = playerSelection.getFirstSymbol();
 				String secondSymbol = playerSelection.getSecondSymbol();
 				Board board = new Board(firstSymbol, secondSymbol);
 
 				Controller controller =
-					getPlayerController(firstPlayer, secondPlayer, board);
+					getPlayerController(playerSelection, board);
 
 				 return new Result("\n" + board.toString(), controller, false);
 			}
 			else
 			{
 				Controller controller =
-					new PlayerTypeSelectionController(playerSelection);
+					new PlayerTypeSelectionController(playerSelection, "2");
 
 				return new Result("", controller, false);
 			}
@@ -60,11 +57,10 @@ public class SymbolSelectionController implements Controller
 		return true;
 	}
 
-	private Controller getPlayerController(
-		Player firstPlayer,
-		Player secondPlayer,
-		Board board)
+	private Controller getPlayerController(PlayerSelection playerSelection, Board board)
 	{
+		Player firstPlayer = playerSelection.getFirstPlayer();
+		Player secondPlayer = playerSelection.getSecondPlayer();
 		PlayerController playerController = getController(board, firstPlayer);
 		PlayerController opponentController = getController(board, secondPlayer);
 

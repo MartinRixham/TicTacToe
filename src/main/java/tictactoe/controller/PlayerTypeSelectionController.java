@@ -6,17 +6,20 @@ public class PlayerTypeSelectionController implements Controller
 {
 	private PlayerSelection playerSelection;
 
-	public PlayerTypeSelectionController(PlayerSelection playerSelection)
+	private String playerNumber;
+
+	public PlayerTypeSelectionController(
+		PlayerSelection playerSelection,
+		String playerNumber)
 	{
 		this.playerSelection = playerSelection;
+		this.playerNumber = playerNumber;
 	}
 
 	@Override
 	public String prompt()
 	{
-		int number = playerSelection.getFirstPlayer() == null ? 1 : 2;
-
-		return "Player " + number + "\n1) human\n2) computer\nselect player: ";
+		return "Player " + playerNumber + "\n1) human\n2) computer\nselect player: ";
 	}
 
 	@Override

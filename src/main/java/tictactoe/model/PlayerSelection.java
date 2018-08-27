@@ -48,6 +48,11 @@ public class PlayerSelection
 		return valid;
 	}
 
+	public boolean hasPlayers()
+	{
+		return firstPlayerType != null && secondPlayerType != null;
+	}
+
 	public Player getFirstPlayer()
 	{
 		return getPlayer(firstPlayerType, true);
@@ -60,11 +65,7 @@ public class PlayerSelection
 
 	private Player getPlayer(String playerType, boolean isFirstPlayer)
 	{
-		if (playerType == null)
-		{
-			return null;
-		}
-		else if (playerType.equals("1"))
+		if (playerType.equals("1"))
 		{
 			return new Human(isFirstPlayer);
 		}

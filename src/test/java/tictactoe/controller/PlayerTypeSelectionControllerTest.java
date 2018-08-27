@@ -13,7 +13,7 @@ public class PlayerTypeSelectionControllerTest
 	public void promptToSelectPlayer()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller controller = new PlayerTypeSelectionController(playerSelection);
+		Controller controller = new PlayerTypeSelectionController(playerSelection, "1");
 
 		assertTrue(controller.requiresInput());
 		assertEquals(
@@ -28,7 +28,7 @@ public class PlayerTypeSelectionControllerTest
 		playerSelection.selectPlayerType("1");
 		playerSelection.selectPlayerSymbol("X");
 
-		Controller controller = new PlayerTypeSelectionController(playerSelection);
+		Controller controller = new PlayerTypeSelectionController(playerSelection, "2");
 
 		assertTrue(controller.requiresInput());
 		assertEquals(
@@ -40,7 +40,7 @@ public class PlayerTypeSelectionControllerTest
 	public void validInput()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller controller = new PlayerTypeSelectionController(playerSelection);
+		Controller controller = new PlayerTypeSelectionController(playerSelection, "1");
 
 		Result result = controller.handleInput("1");
 
@@ -53,7 +53,7 @@ public class PlayerTypeSelectionControllerTest
 	public void invalidInput()
 	{
 		PlayerSelection playerSelection = new PlayerSelection();
-		Controller controller = new PlayerTypeSelectionController(playerSelection);
+		Controller controller = new PlayerTypeSelectionController(playerSelection, "1");
 
 		Result result = controller.handleInput("wibble");
 
