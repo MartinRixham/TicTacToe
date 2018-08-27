@@ -46,7 +46,7 @@ public class Computer implements Player
 			}
 			else
 			{
-				score = getBestSpot(board, !firstPlayer).negateScore(spot);
+				score = getBestSpot(board, !firstPlayer).invert(spot);
 			}
 
 			if (score.isGreaterThan(bestScore))
@@ -57,7 +57,7 @@ public class Computer implements Player
 			board.reset(spot);
 		}
 
-		return bestScore.incrementDepth();
+		return bestScore;
 	}
 
 	@Override

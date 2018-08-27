@@ -17,7 +17,7 @@ public class Board
 				new int[] {1, 4, 7},
 				new int[] {2, 5, 8},
 				new int[] {0, 4, 8},
-				new int[] {2, 4, 6},
+				new int[] {2, 4, 6}
 			};
 
 	private String firstSymbol;

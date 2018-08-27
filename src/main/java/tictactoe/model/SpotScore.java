@@ -31,14 +31,9 @@ public class SpotScore
 		}
 	}
 
-	public SpotScore negateScore(int spot)
+	public SpotScore invert(int spot)
 	{
-		return new SpotScore(spot, -score, depth);
-	}
-
-	public SpotScore incrementDepth()
-	{
-		return new SpotScore(spot, score, depth + 1);
+		return new SpotScore(spot, -score, depth + 1);
 	}
 
 	public int getSpot()
