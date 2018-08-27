@@ -11,7 +11,7 @@ public class Human implements Player
 
 	public boolean selectSpot(String input, Board board)
 	{
-		if (isInteger(input))
+		if (isValid(input))
 		{
 			int spot = Integer.parseInt(input);
 
@@ -26,18 +26,9 @@ public class Human implements Player
 		return  false;
 	}
 
-	private boolean isInteger(String input)
+	private boolean isValid(String input)
 	{
-		try
-		{
-			Integer.parseInt(input);
-		}
-		catch (NumberFormatException e)
-		{
-			return false;
-		}
-
-		return true;
+		return input.length() == 1 && Character.isDigit(input.charAt(0));
 	}
 
 	@Override
