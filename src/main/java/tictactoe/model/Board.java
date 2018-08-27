@@ -90,12 +90,7 @@ public class Board
 
 	public boolean isAvailable(int spot)
 	{
-		if (spot < 1 || spot > board.length)
-		{
-			return false;
-		}
-
-		return board[spot - 1] == 0;
+		return spot > 0 && spot <= board.length && board[spot - 1] == 0;
 	}
 
 	@Override

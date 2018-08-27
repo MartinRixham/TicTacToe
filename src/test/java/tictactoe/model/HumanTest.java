@@ -28,7 +28,7 @@ public class HumanTest
 		Board board = new Board("X", "O");
 		Human human = new Human(false);
 
-		boolean success = human.selectSpot("-1", board);
+		boolean success = human.selectSpot("0", board);
 
 		assertFalse(success);
 		assertEquals(9, board.getAvailableSpots().size());
